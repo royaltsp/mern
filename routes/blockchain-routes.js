@@ -1,13 +1,28 @@
 
 const rp = require('request-promise');
-const Blockchain = require('./dev/blockchain');
+const Blockchain = require('../dev/blockchain');
 const mongoose = require('mongoose')
-require('./models/user-model')
 const uuid = require('uuid/v1'); // to create unique id/string
 const node_addr = uuid().split('-').join().split(',').join();
-const User = mongoose.model('User')
+
 
 module.exports = (app) => {
+
+  let Securum = new Blockchain();
+
+  app.get('/', function (req, res) {
+    res.sendFile('index.html');
+  })
+
+  app.get('/blockchain', function (req, res) {
+    res.send(Securum);
+  });
+
+  app.get('/block-explorer', function (req, res) {
+    res.sendFile('./dev/block-explorer/index.html', { root: __dirname });
+  })
+
+
   app.post('/transaction', function (req, res) {
     // console.log(req);
     // res.send(`The Amonunt of Transaction is ${req.body.amount} Securum.`);
@@ -358,39 +373,5 @@ module.exports = (app) => {
   // 		address_data: address_data
   // 	});
   // });
-
-
-  app.post('/add-user', (req, res) => {
-    const user = req.body;
-    let collection = db.collection('users');
-    collection.insertOne(user, (err, result) => {
-      if (err) return res.status(500).send(err);
-      // console.log("------------------------------");
-      // console.log(result);
-      // console.log("------------------------------");
-      // console.log(result.result);
-      // console.log("------------------------------");
-      let response = {
-        user: {
-          insertedId: result.insertedId,
-          ok: result.result.ok
-        }
-      };
-      collection = db.collection('accounts');
-      let account = {
-        uid: result.insertedId,
-        balance: 20
-      }
-      collection.insertOne(account, (err, result) => {
-        if (err) throw err;
-        response.account = {
-          insertedId: result.insertedId,
-          ok: result.result.ok
-        }
-        console.log(response);
-        res.send(response);
-      })
-    })
-  })
 }
 
