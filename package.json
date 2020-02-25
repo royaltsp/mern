@@ -1,9 +1,9 @@
 {
-  "name": "securum",
+  "name": "mern",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "start": "nodemon --watch dev -e js dev/network-node.js",
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "node1": "nodemon --watch / -e js app.js 3001 http://localhost:3001",
     "node2": "nodemon --watch / -e js app.js 3002 http://localhost:3002",
