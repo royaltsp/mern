@@ -6,6 +6,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 import IndexPage from './pages/IndexPage';
 import SignInAndSignUpPage from './pages/SignInAndSignUpPage';
 import SignOut from './components/SignOut';
+import SendCoinsPage from './pages/SendCoinsPage';
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
         {/* <Switch> */}
         <Route exact path='/' component={IndexPage} />
         <Route path='/sign-in-and-sign-up' component={SignInAndSignUpPage} />
-        <Route path='/sign-out' component={SignOut} />
+        <Route path='/send-coins' component={SendCoinsPage} />
         {/* </Switch> */}
       </BrowserRouter>
     </div>
