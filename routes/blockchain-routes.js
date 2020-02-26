@@ -42,13 +42,14 @@ module.exports = (app) => {
 
 
   app.post('/transaction/broadcast', function (req, res) {
-    if (req.body.sender != "00") {
-      address_data = Securum.getAddressData(req.body.sender);
-      if (address_data.addressBalance < req.body.amount) {
-        res.json({ "note": "Not Sufficient Balance in Sender's Account" });
-        return;
-      }
-    }
+    console.log(req.body);
+    // if (req.body.sender != "00") {
+    //   address_data = Securum.getAddressData(req.body.sender);
+    //   if (address_data.addressBalance < req.body.amount) {
+    //     res.json({ "note": "Not Sufficient Balance in Sender's Account" });
+    //     return;
+    //   }
+    // }
     // console.log('address_data :', address_data.addressBalance);
     // console.log('req.body.amount :', req.body.amount);
 
@@ -69,7 +70,11 @@ module.exports = (app) => {
 
     Promise.all(request_promises)
       .then(data => {
-        res.json({ note: 'Transaction created and broadcast successfully.' });
+        console.log("done")
+        res.json({ 
+            note: 'Transaction created and broadcast successfully.',
+            error: false
+          });
       });
 
   });

@@ -6,13 +6,13 @@ const Account = mongoose.model('Account')
 const jwt = require('jsonwebtoken')
 
 module.exports = app => {
-  app.post('/add-user', async (req, res) => {
+  app.post('/add-user', (req, res) => {
     let response = {
       userAdded: false,
       accountAdded: false
     };
     const user = new User(req.body.user);
-    await user.save().then(data => {
+    user.save().then(data => {
       response.userAdded = true
       console.log("userAdded");
       const account = new Account({
@@ -37,7 +37,7 @@ module.exports = app => {
       if (data.length > 0) {
         res.send({
           error: false,
-          token: generateToken(user)
+          token: generateToken(data[0])
         })
       } else {
         res.send({
@@ -47,10 +47,45 @@ module.exports = app => {
       }
     })
   })
+
+  app.get('/users', (req, res) => {
+    User.find({}).then(data => {
+      if (data.length > 0) {
+        res.send({
+          error: false,
+          users: data
+        })
+      } else {
+        res.send({
+          error: true,
+          message: "No Users"
+        })
+      }
+    })
+  })
+
+  app.get('/account/:uid', (req, res) => {
+    const uid = req.params.uid;
+    Account.find({uid: uid}).then(data => {
+      if (data.length > 0) {
+        res.send({
+          error: false,
+          account: data[0]
+        })
+      } else {
+        res.send({
+          error: true,
+          message: "No Account"
+        })
+      }
+    })
+  })
 }
 
 function generateToken(user) {
+  console.log(user);
   let u = {
+    _id: user._id,
     firstName: user.firstName,
     lastName: user.lastName,
     email: user.email,
@@ -59,7 +94,7 @@ function generateToken(user) {
     wayToContact: user.wayToContact
   };
 
-  return token = jwt.sign(u, 'ecomm', {
+  return token = jwt.sign(u, 'mern', {
     expiresIn: 60 * 60 * 24 // 24 Hours
   })
 }

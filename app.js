@@ -7,8 +7,9 @@ const bodyParser = require("body-parser");
 const cors = require('cors');
 app.use(cors())
 
-// const DeviceUUID = require('device-uuid').DeviceUUID;
-// console.log(new DeviceUUID().get());
+
+// // const DeviceUUID = require('device-uuid').DeviceUUID;
+// // console.log(new DeviceUUID().get());
 
 //parse app / x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -20,7 +21,7 @@ app.use(express.static(__dirname + '/public'));
 require('./routes/blockchain-routes')(app);
 require('./routes/user-routes')(app);
 
-app.listen(port, async () => {
+app.listen(port, () => {
   console.log(`Listening on ${port}`);
   mongoose.connect(mongourl, { useNewUrlParser: true, useUnifiedTopology: false }, () => {
     console.log("MongoDB Connection Success");

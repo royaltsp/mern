@@ -1,34 +1,50 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom';
 const axios = require('axios')
+const jwt = require('jsonwebtoken')
 
 class SendCoins extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      email: '',
-      password: '',
-      msg: ''
+      user: {},
+      account: {},
+      recipient: '',
+      coins: '',
+      msg: '',
+      users: []
     }
   }
 
   handleSubmit = e => {
     e.preventDefault();
-    if (this.state.email === '' && this.state.password === '')
-      alert("Please Provide All Details...");
+    if (this.state.recipient === '' && this.state.coins === '')
+      alert("Please Provide All Fields...");
     else {
-      this.setState({msg: "Please Wait"})
-      axios.post('/check-user', { user: this.state })
-        .then(res => {
-          if(!res.data.error){
-            alert("Login Success")
-            localStorage.setItem('mern', res.data.token)
-            this.props.history.push('/')
-          }
-          else
-            alert("Username OR Password Wrong!")
-        }).catch(err => { throw err })
+      if(Number(this.state.account.balance) < Number(this.state.coins)){
+        alert("You Don't have enough coins")
+      }else{
+        this.setState({msg: "Please Wait"})
+        axios.post('/transaction/broadcast', {
+            amount: Number(this.state.coins),
+            sender: this.state.user._id,
+            recipient: this.state.recipient
+          })
+          .then(res => {
+            if(!res.data.error){
+              axios.post('/update-balance')
+              alert("Transaction Created Successfully")
+              this.setState({
+                coins: '',
+                recipient: '',
+                msg: "Transaction Done"
+              })
+            }
+            else
+              alert("Transaction Failed!")
+          }).catch(err => { throw err })
+      }
     }
   }
 
@@ -37,22 +53,55 @@ class SendCoins extends React.Component {
     this.setState({
       [id]: value
     })
-    // console.log(this.state);
+  }
+
+  componentDidMount(){
+    let token = localStorage.getItem('mern')
+    if (token) {
+      jwt.verify(token, "mern", async (err, decoded) => {
+        if (err) {
+          console.log("err");
+          console.log(err);
+        }else{
+          console.log("decoded");
+          await this.setState({
+            user: {...decoded}
+          })
+          await fetch(`/account/${this.state.user._id}`)
+          .then(res => res.json())
+          .then(res => {
+            this.setState({
+              account: res.account
+            })
+          })
+        }
+      });
+    }
+    fetch('/users').then(res => res.json())
+    .then(res=> {
+      this.setState({
+        users: res.users
+      })
+    })
   }
 
   render() {
+    const usersList = this.state.users.map((user, index) => {
+      return (<option key={index} value={user._id}>{user.firstName+ ' ' +user.lastName}</option>)
+    })
+    if(localStorage.getItem('mern') === null)this.props.history.push('/') ;
     return (
       <div className="col-lg-5">
         <form className="contact-form" id="sign-up-form">
           <div className="row">
             <div className="form-group col-lg-12">
               <select
-                id="selectUser"
+                id="recipient"
                 className="check-form form-control"
                 onChange={this.handleChane}
               >
                 <option value="-1">Select User</option>
-                <option value="hashByUid">hash by uid</option>
+                {usersList}
               </select>
               <span><i className="ti-check"></i></span>
             </div>
