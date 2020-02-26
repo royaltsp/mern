@@ -4,10 +4,10 @@ const Blockchain = require('../dev/blockchain');
 const mongoose = require('mongoose')
 const uuid = require('uuid/v1'); // to create unique id/string
 const node_addr = uuid().split('-').join().split(',').join();
-
+// const path = require('path');
 
 module.exports = (app) => {
-
+  // if()
   let Securum = new Blockchain();
 
   app.get('/', function (req, res) {
@@ -42,7 +42,6 @@ module.exports = (app) => {
 
 
   app.post('/transaction/broadcast', function (req, res) {
-    console.log(req.body);
     // if (req.body.sender != "00") {
     //   address_data = Securum.getAddressData(req.body.sender);
     //   if (address_data.addressBalance < req.body.amount) {
@@ -70,7 +69,6 @@ module.exports = (app) => {
 
     Promise.all(request_promises)
       .then(data => {
-        console.log("done")
         res.json({ 
             note: 'Transaction created and broadcast successfully.',
             error: false
@@ -91,7 +89,6 @@ module.exports = (app) => {
 
     const senders = new Array();
     current_block_data.transactions.forEach(transaction => {
-      // console.log('transaction :', transaction);
       if (transaction.sender != "00" && node_addr != transaction.recipient)
         senders.push(transaction.sender);
     })
@@ -100,8 +97,8 @@ module.exports = (app) => {
     const nonce = Securum.proofOfWork(prev_block_hash, current_block_data);
     const current_block_hash = Securum.hashBlock(prev_block_hash, current_block_data, nonce); // get hash for currently adding block
 
-    // Securum.createNewTransaction(12.5, "00", node_addr); // Reward for miner which is current instance/node as Securum
-    //later blocks are shared in netwrok then make this reward transaction for all nodes given below
+    // // Securum.createNewTransaction(12.5, "00", node_addr); // Reward for miner which is current instance/node as Securum
+    // //later blocks are shared in netwrok then make this reward transaction for all nodes given below
 
     const new_block = Securum.createNewBlock(nonce, prev_block_hash, current_block_hash); // to add current block
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import PageInfo from '../components/PageInfo'
 import SignUp from '../components/SignUp'
-import PreLoader from '../components/PreLoader'
+// import PreLoader from '../components/PreLoader'
 import Header from '../components/Header'
 import Newsletter from '../components/Newsletter'
 import Footer from '../components/Footer'

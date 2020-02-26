@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function Team() {
   return (
@@ -22,9 +23,9 @@ export default function Team() {
               <span>Business Development</span>
             </div>
             <div className="member-social">
-              <a href=""><i className="fa fa-facebook"></i></a>
-              <a href=""><i className="fa fa-linkedin"></i></a>
-              <a href=""><i className="fa fa-twitter"></i></a>
+              <Link to=""><i className="fa fa-facebook"></i></Link>
+              <Link to=""><i className="fa fa-linkedin"></i></Link>
+              <Link to=""><i className="fa fa-twitter"></i></Link>
             </div>
             <div className="member-info">
               <div className="member-img mf set-bg" data-setbg="img/member/1.jpg"></div>
@@ -48,9 +49,9 @@ export default function Team() {
               <span>Business Development</span>
             </div>
             <div className="member-social">
-              <a href=""><i className="fa fa-facebook"></i></a>
-              <a href=""><i className="fa fa-linkedin"></i></a>
-              <a href=""><i className="fa fa-twitter"></i></a>
+              <Link to=""><i className="fa fa-facebook"></i></Link>
+              <Link to=""><i className="fa fa-linkedin"></i></Link>
+              <Link to=""><i className="fa fa-twitter"></i></Link>
             </div>
             <div className="member-info">
               <div className="member-img mf set-bg" data-setbg="img/member/2.jpg"></div>
@@ -74,9 +75,9 @@ export default function Team() {
               <span>Business Development</span>
             </div>
             <div className="member-social">
-              <a href=""><i className="fa fa-facebook"></i></a>
-              <a href=""><i className="fa fa-linkedin"></i></a>
-              <a href=""><i className="fa fa-twitter"></i></a>
+              <Link to=""><i className="fa fa-facebook"></i></Link>
+              <Link to=""><i className="fa fa-linkedin"></i></Link>
+              <Link to=""><i className="fa fa-twitter"></i></Link>
             </div>
             <div className="member-info">
               <div className="member-img mf set-bg" data-setbg="img/member/3.jpg"></div>
@@ -100,9 +101,9 @@ export default function Team() {
               <span>Product Manager</span>
             </div>
             <div className="member-social">
-              <a href=""><i className="fa fa-facebook"></i></a>
-              <a href=""><i className="fa fa-linkedin"></i></a>
-              <a href=""><i className="fa fa-twitter"></i></a>
+              <Link to=""><i className="fa fa-facebook"></i></Link>
+              <Link to=""><i className="fa fa-linkedin"></i></Link>
+              <Link to=""><i className="fa fa-twitter"></i></Link>
             </div>
             <div className="member-info">
               <div className="member-img mf set-bg" data-setbg="img/member/4.jpg"></div>
@@ -126,9 +127,9 @@ export default function Team() {
               <span>Head of Design</span>
             </div>
             <div className="member-social">
-              <a href=""><i className="fa fa-facebook"></i></a>
-              <a href=""><i className="fa fa-linkedin"></i></a>
-              <a href=""><i className="fa fa-twitter"></i></a>
+              <Link to=""><i className="fa fa-facebook"></i></Link>
+              <Link to=""><i className="fa fa-linkedin"></i></Link>
+              <Link to=""><i className="fa fa-twitter"></i></Link>
             </div>
             <div className="member-info">
               <div className="member-img mf set-bg" data-setbg="img/member/5.jpg"></div>

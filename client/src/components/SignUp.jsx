@@ -23,6 +23,9 @@ class SignUp extends React.Component {
     if(this.state.password !== this.state.password2)
       alert("Password Didn't Matched");
     else{
+      this.setState({
+        msg: "Please Wait..."
+      });
       axios.post('/add-user', {user: this.state})
       .then(res => {
         console.log(res);
@@ -36,7 +39,8 @@ class SignUp extends React.Component {
             bio: '',
             password: '',
             password2: '',
-            wayToContact: ''
+            wayToContact: '',
+            msg: ''
           });
           this.props.history.push('/')
         }else{
@@ -172,7 +176,8 @@ class SignUp extends React.Component {
                   <span className="checkmark"></span>
                 </label>
               </div>
-
+              {this.state.msg}
+              <br/>
               <button onClick={this.handleSubmit} className="site-btn sb-gradients mt-4">
                 Sign Up
                   </button>

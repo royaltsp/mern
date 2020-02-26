@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function Features() {
   return (
@@ -19,7 +20,7 @@ export default function Features() {
                   Excepteur sint occaecat cupidatat non proident sunt in culpa qui
                   officia deserunt mollit anim id est laborum.
             </p>
-                <a href="" className="readmore">Readmore</a>
+                <Link to="" className="readmore">Readmore</Link>
               </div>
             </div>
             {/* <!-- feature --> */}
@@ -31,7 +32,7 @@ export default function Features() {
                   Excepteur sint occaecat cupidatat non proident sunt in culpa qui
                   officia deserunt mollit anim id est laborum.
             </p>
-                <a href="" className="readmore">Readmore</a>
+                <Link to="" className="readmore">Readmore</Link>
               </div>
             </div>
             {/* <!-- feature --> */}
@@ -43,7 +44,7 @@ export default function Features() {
                   Excepteur sint occaecat cupidatat non proident sunt in culpa qui
                   officia deserunt mollit anim id est laborum.
             </p>
-                <a href="" className="readmore">Readmore</a>
+                <Link to="" className="readmore">Readmore</Link>
               </div>
             </div>
             {/* <!-- feature --> */}
@@ -55,7 +56,7 @@ export default function Features() {
                   Excepteur sint occaecat cupidatat non proident sunt in culpa qui
                   officia deserunt mollit anim id est laborum.
             </p>
-                <a href="" className="readmore">Readmore</a>
+                <Link to="" className="readmore">Readmore</Link>
               </div>
             </div>
             {/* <!-- feature --> */}
@@ -67,7 +68,7 @@ export default function Features() {
                   Excepteur sint occaecat cupidatat non proident sunt in culpa qui
                   officia deserunt mollit anim id est laborum.
             </p>
-                <a href="" className="readmore">Readmore</a>
+                <Link to="" className="readmore">Readmore</Link>
               </div>
             </div>
             {/* <!-- feature --> */}
@@ -79,7 +80,7 @@ export default function Features() {
                   Excepteur sint occaecat cupidatat non proident sunt in culpa qui
                   officia deserunt mollit anim id est laborum.
             </p>
-                <a href="" className="readmore">Readmore</a>
+                <Link to="" className="readmore">Readmore</Link>
               </div>
             </div>
           </div>

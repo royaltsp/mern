@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function About() {
   return (
@@ -18,7 +19,7 @@ export default function About() {
                 conveniently and without restriction. It’s the dawn of a better,
                 more free world.
           </p>
-              <a href="" className="site-btn sb-gradients sbg-line mt-5">Get Started</a>
+              <Link to="" className="site-btn sb-gradients sbg-line mt-5">Get Started</Link>
             </div>
           </div>
           <div className="about-img">

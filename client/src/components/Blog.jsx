@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function Blog() {
   return (
@@ -19,12 +20,12 @@ export default function Blog() {
                 <div className="blog-text">
                   <div className="post-date">03 jan 2018</div>
                   <h4 className="blog-title">
-                    <a href="">Coinbase to Reopen the GDAX Securum Cash-Euro Order Book</a>
+                    <Link to="">Coinbase to Reopen the GDAX Securum Cash-Euro Order Book</Link>
                   </h4>
                   <div className="post-meta">
-                    <a href=""><span>by</span> Admin</a>
-                    <a href=""><i className="fa fa-heart-o"></i> 234 Likes</a>
-                    <a href=""><i className="fa fa-comments-o"></i> 08 comments</a>
+                    <Link to=""><span>by</span> Admin</Link>
+                    <Link to=""><i className="fa fa-heart-o"></i> 234 Likes</Link>
+                    <Link to=""><i className="fa fa-comments-o"></i> 08 comments</Link>
                   </div>
                 </div>
               </div>
@@ -38,13 +39,13 @@ export default function Blog() {
                 <div className="blog-text">
                   <div className="post-date">28 dec 2018</div>
                   <h4 className="blog-title">
-                    <a href="">Blockchain Rolls Out Trading Feature for 22 States in the
-                  U.S</a>
+                    <Link to="">Blockchain Rolls Out Trading Feature for 22 States in the
+                  U.S</Link>
                   </h4>
                   <div className="post-meta">
-                    <a href=""><span>by</span> Admin</a>
-                    <a href=""><i className="fa fa-heart-o"></i> 234 Likes</a>
-                    <a href=""><i className="fa fa-comments-o"></i> 08 comments</a>
+                    <Link to=""><span>by</span> Admin</Link>
+                    <Link to=""><i className="fa fa-heart-o"></i> 234 Likes</Link>
+                    <Link to=""><i className="fa fa-comments-o"></i> 08 comments</Link>
                   </div>
                 </div>
               </div>
@@ -58,12 +59,12 @@ export default function Blog() {
                 <div className="blog-text">
                   <div className="post-date">28 aug 2018</div>
                   <h4 className="blog-title">
-                    <a href="">This Week in Securum: Up, Down and Sideways</a>
+                    <Link to="">This Week in Securum: Up, Down and Sideways</Link>
                   </h4>
                   <div className="post-meta">
-                    <a href=""><span>by</span> Admin</a>
-                    <a href=""><i className="fa fa-heart-o"></i> 234 Likes</a>
-                    <a href=""><i className="fa fa-comments-o"></i> 08 comments</a>
+                    <Link to=""><span>by</span> Admin</Link>
+                    <Link to=""><i className="fa fa-heart-o"></i> 234 Likes</Link>
+                    <Link to=""><i className="fa fa-comments-o"></i> 08 comments</Link>
                   </div>
                 </div>
               </div>

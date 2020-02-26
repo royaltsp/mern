@@ -7,11 +7,11 @@ export default function Hero() {
         <div className="container">
           <div className="row">
             <div className="col-md-6 hero-text">
-              <h2>Invest in <span>Securum</span> <br />Securum Trading</h2>
-              <h4>
+              <h3 style={{fontSize:"40px"}}>Invest in <span>Securum</span> <br />Securum Trading</h3>
+              <h6>
                 Use modern progressive technologies of Securum to earn money
-          </h4>
-              <h3
+          </h6>
+              <h4
                 id="blink_text"
                 style={
                   {
@@ -22,7 +22,7 @@ export default function Hero() {
                 }
               >
                 Sign Up for free and get 20 Securum Coins
-              </h3>
+              </h4>
               <form className="hero-subscribe-from">
                 <input type="text" placeholder="Enter your email" />
                 <button className="site-btn sb-gradients">Get Started</button>

@@ -20,6 +20,7 @@ app.use(express.static(__dirname + '/public'));
 //import routes
 require('./routes/blockchain-routes')(app);
 require('./routes/user-routes')(app);
+require('./routes/account-routes')(app);
 
 app.listen(port, () => {
   console.log(`Listening on ${port}`);
