@@ -4,10 +4,10 @@ const Blockchain = require('../dev/blockchain');
 const mongoose = require('mongoose')
 const uuid = require('uuid/v1'); // to create unique id/string
 const node_addr = uuid().split('-').join().split(',').join();
-// const path = require('path');
+const fs = require('fs')
 
 module.exports = (app) => {
-  // if()
+  // console.log(fs.);
   let Securum = new Blockchain();
 
   app.get('/', function (req, res) {
