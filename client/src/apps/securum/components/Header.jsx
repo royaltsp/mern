@@ -1,17 +1,17 @@
 import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
 
-class Header extends React.Component{
+class Header extends React.Component {
   // constructor(){
   //   super()
   // }
 
   signOut = () => {
     localStorage.removeItem('mern')
-    this.props.history.push('/securum')
+    this.props.history.push('/')
   }
 
-  render(){
+  render() {
     return (
       <div>
         <header className="header-section clearfix">
@@ -23,7 +23,7 @@ class Header extends React.Component{
             <Link to="" className="user"><i className="fa fa-user"></i></Link>
             {
               localStorage.getItem('mern') === null ?
-                <Link to="/securum/sign-in-and-sign-up" className="site-btn">Sign In</Link>
+                <Link to="/sign-in-and-sign-up" className="site-btn">Sign In</Link>
                 :
                 <button className="site-btn" onClick={this.signOut}>Sign Out</button>
             }
@@ -33,10 +33,10 @@ class Header extends React.Component{
                 <li><Link to="">Solution</Link></li>
                 <li><Link to="">Features</Link></li>
                 <li><Link to="">News</Link></li>
-                <li><Link to="/securum/send-coins">Send Coins</Link></li>
-                {/* <li><Link to="/securum/blog">Blog</Link></li> */}
-                <li><Link to="/securum/about">About</Link></li>
-                <li><Link to="/securum/contact">Contact</Link></li>
+                <li><Link to="/send-coins">Send Coins</Link></li>
+                {/* <li><Link to="/blog">Blog</Link></li> */}
+                <li><Link to="/about">About</Link></li>
+                <li><Link to="/contact">Contact</Link></li>
               </ul>
             </nav>
           </div>

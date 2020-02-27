@@ -18,8 +18,8 @@ app.use(bodyParser.json());
 //serving static files
 // app.use(express.static(__dirname + '/public'));
 app.use(express.static('client/build'))
-const path = require('path')
-app.get('*', (req, res) => {
+// const path = require('path')
+app.get('/', (req, res) => {
   res.sendFile(__dirname, 'client', 'build', 'index.html')
 })
 //import routes
@@ -29,7 +29,7 @@ require('./routes/account-routes')(app);
 
 app.listen(port, () => {
   console.log(`Listening on ${port}`);
-  mongoose.connect(mongourl, { useNewUrlParser: true, useUnifiedTopology: false }, () => {
+  mongoose.connect(mongourl, { useNewUrlParser: true, useUnifiedTopology: true }, () => {
     console.log("MongoDB Connection Success");
   })
 })

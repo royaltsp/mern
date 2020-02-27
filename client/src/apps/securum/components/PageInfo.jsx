@@ -11,11 +11,11 @@ function PageInfo(props) {
     <div>
       <section className="page-info-section">
         <div className="container">
-          <h2 style={{color: "white"}}>{pathname}</h2>
+          <h2 style={{ color: "white" }}>{pathname}</h2>
           <div className="site-beradcamb">
-            <Link to="/securum">Home</Link>
+            <Link to="/">Home</Link>
             <span>
-              <i className="fa fa-angle-right"></i> 
+              <i className="fa fa-angle-right"></i>
               {pathname}
             </span>
           </div>

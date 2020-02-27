@@ -3,7 +3,7 @@ const dbs = {
 	ecomm: 'ecomm'
 };
 module.exports = {
-	mongourl: `mongodb+srv://tsp:tsp321@cluster0-pfx69.mongodb.net/${dbs.ecomm}?retryWrites=true&w=majority`
+	mongourl: `mongodb+srv://tsp:tsp321@cluster0-pfx69.mongodb.net/${dbs.tspmongo}?retryWrites=true&w=majority`
 }
 
 /*

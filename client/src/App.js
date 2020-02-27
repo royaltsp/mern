@@ -12,8 +12,8 @@ function App() {
     <div className="App">
       <BrowserRouter>
         {/* <Route exact path='/' component={Sample} /> */}
-        <Route exact path='/' component={Ecomm} />
-        <Route path='/securum' component={Securum} />
+        {/* <Route exact path='/' component={Securum} /> */}
+        <Route path='/' component={Securum} />
       </BrowserRouter>
     </div>
   );

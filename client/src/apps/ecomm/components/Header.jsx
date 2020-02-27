@@ -3,21 +3,17 @@ import { Link, withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import { ReactComponent as Logo } from '../assets/crown.svg';
 import './css/Header.scss';
+import Greeting from './Greeting';
 
 const Header = (props) => {
+  console.log("Header Render");
   return (
     <div className="header">
       <Link className="logo-container" to="/">
         <Logo />
         <span>{props.appName}</span>
       </Link>
-      <span style={{
-        lineHeight: "90px",
-        fontWeight: "bold",
-        fontFamily: "georgia",
-        fontSize: "30px",
-        color: "darkblue"
-      }}>Hello {props.firstName}!</span>
+      <Greeting />
       <div className="options">
         <Link className='option' to='/shop-page'>Shop</Link>
         <Link className='option' to="/contact-page">Contact</Link>
@@ -36,9 +32,14 @@ const Header = (props) => {
 const mapStateToProps = state => {
   return {
     appName: state.appReducer.appName,
-    firstName: state.userReducer.firstName
   }
 }
+
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     changeName: name => { dispatch(changeName(name)) }
+//   }
+// }
 
 // export default withRouter(Header);
 export default connect(mapStateToProps)(withRouter(Header));

@@ -104,7 +104,7 @@ class SendCoins extends React.Component {
       if (user._id !== this.state.user._id)
         return (<option key={index} value={user.firstName + "$_$" + user._id}>{user.firstName + ' ' + user.lastName}</option>)
     })
-    if (localStorage.getItem('mern') === null) this.props.history.push('/securum');
+    if (localStorage.getItem('mern') === null) this.props.history.push('/');
     return (
       <div className="col-lg-5">
         <form className="contact-form" id="sign-up-form">

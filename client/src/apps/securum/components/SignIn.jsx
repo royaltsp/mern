@@ -18,13 +18,13 @@ class SignIn extends React.Component {
     if (this.state.email === '' && this.state.password === '')
       alert("Please Provide All Details...");
     else {
-      this.setState({msg: "Please Wait"})
+      this.setState({ msg: "Please Wait" })
       axios.post('/check-user', { user: this.state })
         .then(res => {
-          if(!res.data.error){
+          if (!res.data.error) {
             alert("Login Success")
             localStorage.setItem('mern', res.data.token)
-            this.props.history.push('/securum')
+            this.props.history.push('/')
           }
           else
             alert("Username OR Password Wrong!")

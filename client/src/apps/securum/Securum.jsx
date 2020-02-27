@@ -13,9 +13,9 @@ function Securum() {
     <div className="Securum">
       <BrowserRouter>
         <Switch>
-          <Route exact path='/securum/' component={IndexPage} />
-          <Route path='/securum/sign-in-and-sign-up' component={SignInAndSignUpPage} />
-          <Route path='/securum/send-coins' component={SendCoinsPage} />
+          <Route exact path='/' component={IndexPage} />
+          <Route path='/sign-in-and-sign-up' component={SignInAndSignUpPage} />
+          <Route path='/send-coins' component={SendCoinsPage} />
         </Switch>
       </BrowserRouter>
     </div>
