@@ -5,19 +5,9 @@ import FormInput from './FormInput';
 import CustomButton from './CustomButton';
 
 import './css/SignUp.scss';
+import { connect } from 'react-redux';
 
 const axios = require('axios');
-
-const sampleUser = {
-  firstName: 'Shubham',
-  lastName: 'Tandale',
-  email: 'shubham@example.com',
-  phone: '87768745354',
-  bio: 'Student',
-  password: '123',
-  confirmPassword: '123',
-  wayToContact: 'email'
-};
 
 class SignUp extends React.Component {
   constructor() {
@@ -75,12 +65,10 @@ class SignUp extends React.Component {
     this.setState({ [name]: value });
   };
 
-  componentDidMount(){
-    this.setState(sampleUser)
+  componentDidMount() {
   }
 
   render() {
-    // const { firstName, email, password, confirmPassword } = this.state;
     return (
       <div className='sign-up'>
         <h2 className='title'>I do not have a account</h2>
@@ -111,30 +99,6 @@ class SignUp extends React.Component {
             required
           />
           <FormInput
-            type='phone'
-            name='phone'
-            value={this.state.phone}
-            onChange={this.handleChange}
-            label='Phone'
-            required
-          />
-          <FormInput
-            type='text'
-            name='bio'
-            value={this.state.bio}
-            onChange={this.handleChange}
-            label='Bio'
-            required
-          />
-          <FormInput
-            type='text'
-            name='wayToContact'
-            value={this.state.wayToContact}
-            onChange={this.handleChange}
-            label='Way To Contact'
-            required
-          />
-          <FormInput
             type='password'
             name='password'
             value={this.state.password}
@@ -157,5 +121,10 @@ class SignUp extends React.Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    firstName: state.userReducer.firstName
+  }
+}
 
-export default SignUp;
+export default connect(mapStateToProps)(SignUp);

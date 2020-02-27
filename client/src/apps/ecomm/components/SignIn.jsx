@@ -22,17 +22,17 @@ class SignIn extends React.Component {
     this.checkUserPresentInDatabase();
   };
 
-  checkUserPresentInDatabase(){
+  checkUserPresentInDatabase() {
     axios.post('http://localhost:8000/check-user', this.state)
-    .then(res=> {
-      if (res.data === true) {
-        alert("User Present In Database")
-      }else{
-        alert("Wrong Email OR Password")
-      }
-    }).catch(err=> {
-      throw err;
-    })
+      .then(res => {
+        if (res.data === true) {
+          alert("User Present In Database")
+        } else {
+          alert("Wrong Email OR Password")
+        }
+      }).catch(err => {
+        throw err;
+      })
   }
 
   handleChange = event => {
@@ -74,5 +74,7 @@ class SignIn extends React.Component {
     );
   }
 }
+
+
 
 export default SignIn;

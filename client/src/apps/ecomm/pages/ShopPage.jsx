@@ -10,14 +10,15 @@ export default class ShopPage extends Component {
     }
   }
   render() {
+
     return (
-      <div className="shop">
+      < div className="shop" >
         {
           this.state.collection.map(({ id, ...otherCollectionProps }) => (
             <PreviewCollection key={id} {...otherCollectionProps} />
           ))
         }
-      </div>
+      </div >
     )
   }
 }
