@@ -83,7 +83,7 @@ module.exports = app => {
 }
 
 function generateToken(user) {
-  console.log(user);
+  // console.log(user);
   let u = {
     _id: user._id,
     firstName: user.firstName,

@@ -19,7 +19,7 @@ class SignIn extends React.Component {
       alert("Please Provide All Details...");
     else {
       this.setState({ msg: "Please Wait" })
-      axios.post('/check-user', { user: this.state })
+      axios.post('http://localhost:5000/check-user', { user: this.state })
         .then(res => {
           if (!res.data.error) {
             alert("Login Success")

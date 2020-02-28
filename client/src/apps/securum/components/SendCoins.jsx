@@ -26,13 +26,13 @@ class SendCoins extends React.Component {
         alert("You Don't have enough coins")
       } else {
         this.setState({ msg: "Please Wait" })
-        axios.post('/transaction/broadcast', {
+        axios.post('http://localhost:5000/transaction/broadcast', {
           amount: Number(this.state.coins),
           sender: this.state.user.firstName + "$_$" + this.state.user._id,
           recipient: this.state.recipient
         }).then(res => {
           if (!res.data.error) {
-            axios.post('/update-balance', {
+            axios.post('http://localhost:5000/update-balance', {
               acc_id: this.state.account._id,
               balance: this.state.account.balance - this.state.coins
             }).then(res => {
@@ -81,7 +81,7 @@ class SendCoins extends React.Component {
           await this.setState({
             user: { ...decoded }
           })
-          await fetch(`/account/${this.state.user._id}`)
+          await fetch(`http://localhost:5000/account/${this.state.user._id}`)
             .then(res => res.json())
             .then(res => {
               this.setState({
@@ -91,7 +91,7 @@ class SendCoins extends React.Component {
         }
       });
     }
-    fetch('/users').then(res => res.json())
+    fetch('http://localhost:5000/users').then(res => res.json())
       .then(res => {
         this.setState({
           users: res.users
