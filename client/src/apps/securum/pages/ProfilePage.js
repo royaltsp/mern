@@ -9,23 +9,29 @@ import Profile from "../components/Profile";
 import PageInfo from "../components/PageInfo";
 import { withRouter } from "react-router";
 
-function ProfilePage(props) {
+class ProfilePage extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   // fetch("/blockchain")
   // .then(res => res.json())
   // .then(res=> {
   //   console.log(res);
   // })
-  if (localStorage.getItem("mern") === null) props.history.push("/");
-  return (
-    <div className="profile-page">
-      {/* <PreLoader /> */}
-      <Header />
-      <PageInfo />
-      <Profile />
-      <Newsletter />
-      <Footer />
-    </div>
-  );
+  render() {
+    if (localStorage.getItem("mern") === null) this.props.history.push("/");
+    return (
+      <div className="profile-page">
+        {/* <PreLoader /> */}
+        <Header />
+        <PageInfo />
+        <Profile />
+        <Newsletter />
+        <Footer />
+      </div>
+    );
+  }
 }
 
 export default withRouter(ProfilePage);
