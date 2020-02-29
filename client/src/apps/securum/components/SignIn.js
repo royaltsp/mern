@@ -45,7 +45,7 @@ class SignIn extends React.Component {
 
   handleChane = e => {
     const { id, value } = e.target;
-    if (id === "email") changeEmail(value);
+    // if (id === "email") changeEmail(value);
     this.setState({
       [id]: value
     });
