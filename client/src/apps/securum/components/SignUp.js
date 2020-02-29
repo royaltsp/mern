@@ -1,68 +1,72 @@
-import React from 'react'
-import { withRouter } from 'react-router-dom';
-const axios = require('axios')
+import React from "react";
+import { withRouter } from "react-router-dom";
+const axios = require("axios");
 
 class SignUp extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      firstName: '',
-      lastName: '',
-      email: '',
-      phone: '',
-      bio: '',
-      password: '',
-      password2: '',
-      wayToContact: ''
-    }
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      bio: "",
+      password: "",
+      password2: "",
+      wayToContact: ""
+    };
   }
 
   handleSubmit = e => {
     e.preventDefault();
-    if(this.state.password !== this.state.password2)
+    if (this.state.password !== this.state.password2)
       alert("Password Didn't Matched");
-    else{
+    else {
       this.setState({
         msg: "Please Wait..."
       });
-      axios.post('/add-user', {user: this.state})
-      .then(res => {
-        console.log(res);
-        if(res.data.userAdded && res.data.accountAdded){
-          alert("Registration Successful...");
-          this.setState({
-            firstName: '',
-            lastName: '',
-            email: '',
-            phone: '',
-            bio: '',
-            password: '',
-            password2: '',
-            wayToContact: '',
-            msg: ''
-          });
-          this.props.history.push('/')
-        }else{
-          alert("Registration Failed. Try Again!")
-        }
-      }).catch(err => {throw err})
+      axios
+        .post("http://localhost:5001/add-user", { user: this.state })
+        .then(res => {
+          console.log(res);
+          if (res.data.userAdded && res.data.accountAdded) {
+            alert("Registration Successful...");
+            this.setState({
+              firstName: "",
+              lastName: "",
+              email: "",
+              phone: "",
+              bio: "",
+              password: "",
+              password2: "",
+              wayToContact: "",
+              msg: ""
+            });
+            this.props.history.push("/");
+          } else {
+            alert("Registration Failed. Try Again!");
+          }
+        })
+        .catch(err => {
+          throw err;
+        });
     }
-  }
+  };
 
   handleChane = e => {
     const { id, value } = e.target;
     this.setState({
       [id]: value
-    })
-  }
+    });
+  };
 
   handleClick = e => {
     const { name, value } = e.target;
     this.setState({
       [name]: value
-    })
-  }
+    });
+  };
 
   render() {
     return (
@@ -79,7 +83,9 @@ class SignUp extends React.Component {
                   type="text"
                   placeholder="First Name*:"
                 />
-                <span><i className="ti-check"></i></span>
+                <span>
+                  <i className="ti-check"></i>
+                </span>
               </div>
             </div>
             <div className="col-md-6">
@@ -92,7 +98,9 @@ class SignUp extends React.Component {
                   type="text"
                   placeholder="Last Name*:"
                 />
-                <span><i className="ti-check"></i></span>
+                <span>
+                  <i className="ti-check"></i>
+                </span>
               </div>
             </div>
             <div className="col-md-6">
@@ -105,7 +113,9 @@ class SignUp extends React.Component {
                   type="text"
                   placeholder="Email Adress*:"
                 />
-                <span><i className="ti-check"></i></span>
+                <span>
+                  <i className="ti-check"></i>
+                </span>
               </div>
             </div>
             <div className="col-md-6">
@@ -118,7 +128,9 @@ class SignUp extends React.Component {
                   type="text"
                   placeholder="Phone Number*:"
                 />
-                <span><i className="ti-check"></i></span>
+                <span>
+                  <i className="ti-check"></i>
+                </span>
               </div>
             </div>
             <div className="col-md-12">
@@ -141,7 +153,9 @@ class SignUp extends React.Component {
                   type="password"
                   placeholder="Enter Password*:"
                 />
-                <span><i className="ti-check"></i></span>
+                <span>
+                  <i className="ti-check"></i>
+                </span>
               </div>
             </div>
             <div className="col-md-6">
@@ -154,39 +168,61 @@ class SignUp extends React.Component {
                   type="password"
                   placeholder="Confirm Password*:"
                 />
-                <span><i className="ti-check"></i></span>
+                <span>
+                  <i className="ti-check"></i>
+                </span>
               </div>
             </div>
             <div className="col-md-12">
-              <h5 className="mb-3">Way to Contacts<span>*</span>:</h5>
+              <h5 className="mb-3">
+                Way to Contacts<span>*</span>:
+              </h5>
               <div className="contact-type">
                 <label className="ct-label">
                   &nbsp;&nbsp;Phone
-                  <input type="radio" onClick={this.handleClick} value="phone" name="wayToContact" />
+                  <input
+                    type="radio"
+                    onClick={this.handleClick}
+                    value="phone"
+                    name="wayToContact"
+                  />
                   <span className="checkmark"></span>
                 </label>
                 <label className="ct-label">
                   &nbsp;&nbsp;Email
-                  <input type="radio" onClick={this.handleClick} value="email" name="wayToContact" />
+                  <input
+                    type="radio"
+                    onClick={this.handleClick}
+                    value="email"
+                    name="wayToContact"
+                  />
                   <span className="checkmark"></span>
                 </label>
                 <label className="ct-label">
                   &nbsp;&nbsp;Other
-                  <input type="radio" onClick={this.handleClick} value="other" name="wayToContact" />
+                  <input
+                    type="radio"
+                    onClick={this.handleClick}
+                    value="other"
+                    name="wayToContact"
+                  />
                   <span className="checkmark"></span>
                 </label>
               </div>
               {this.state.msg}
-              <br/>
-              <button onClick={this.handleSubmit} className="site-btn sb-gradients mt-4">
+              <br />
+              <button
+                onClick={this.handleSubmit}
+                className="site-btn sb-gradients mt-4"
+              >
                 Sign Up
-                  </button>
+              </button>
             </div>
           </div>
         </form>
       </div>
-    )
+    );
   }
 }
 
-export default withRouter(SignUp)
+export default withRouter(SignUp);
