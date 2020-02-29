@@ -37,7 +37,8 @@ module.exports = app => {
       if (data.length > 0) {
         res.send({
           error: false,
-          token: generateToken(data[0])
+          token: generateToken(data[0]),
+          user: data[0]
         })
       } else {
         res.send({

@@ -11,8 +11,9 @@ import Review from '../components/Review';
 import Newsletter from '../components/Newsletter';
 import Blog from '../components/Blog';
 import Footer from '../components/Footer';
+import { connect } from 'react-redux';
 
-export default function IndexPage() {
+function IndexPage(props) {
   // fetch("/blockchain")
   // .then(res => res.json())
   // .then(res=> {
@@ -35,3 +36,11 @@ export default function IndexPage() {
     </div>
   )
 }
+
+const mapStateToProps = state => {
+  return {
+    user: state.userReducer.user
+  }
+}
+
+export default connect(mapStateToProps)(IndexPage);

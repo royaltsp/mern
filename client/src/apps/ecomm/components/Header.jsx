@@ -11,7 +11,7 @@ const Header = (props) => {
     <div className="header">
       <Link className="logo-container" to="/">
         <Logo />
-        <span>{props.appName}</span>
+        {/* <span>{props.appName}</span> */}
       </Link>
       <Greeting />
       <div className="options">
@@ -31,7 +31,7 @@ const Header = (props) => {
 
 const mapStateToProps = state => {
   return {
-    appName: state.appReducer.appName,
+    // appName: state.appReducer.appName,
   }
 }
 

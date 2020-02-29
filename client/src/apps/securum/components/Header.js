@@ -20,6 +20,7 @@ class Header extends React.Component {
               <img src="img/logo.png" alt="" />
             </Link>
             <div className="responsive-bar"><i className="fa fa-bars"></i></div>
+
             <Link to="" className="user"><i className="fa fa-user"></i></Link>
             {
               localStorage.getItem('mern') === null ?
@@ -31,6 +32,7 @@ class Header extends React.Component {
             <nav className="main-menu">
               <ul className="menu-list">
                 <li><Link to="">Solution</Link></li>
+                <li><Link to="/profile">Profile</Link></li>
                 <li><Link to="">Features</Link></li>
                 <li><Link to="">News</Link></li>
                 <li><Link to="/send-coins">Send Coins</Link></li>

@@ -6,6 +6,7 @@ function PageInfo(props) {
   switch (props.location.pathname) {
     case '/send-coins': pathname = "Send Coins"; break;
     case '/sign-in-and-sign-up': pathname = "Sign In / Sign Up"; break;
+    default: pathname = "";
   }
   return (
     <div>
