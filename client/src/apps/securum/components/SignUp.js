@@ -20,37 +20,49 @@ class SignUp extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    if (this.state.password !== this.state.password2)
-      alert("Password Didn't Matched");
+    if (
+      this.state.firstName === "" ||
+      this.state.lastName === "" ||
+      this.state.email === "" ||
+      this.state.phone === "" ||
+      this.state.bio === "" ||
+      this.state.password === "" ||
+      this.state.wayToContact === ""
+    )
+      alert("All Fields Are Necessary...");
     else {
-      this.setState({
-        msg: "Please Wait..."
-      });
-      axios
-        .post("http://localhost:5001/add-user", { user: this.state })
-        .then(res => {
-          console.log(res);
-          if (res.data.userAdded && res.data.accountAdded) {
-            alert("Registration Successful...");
-            this.setState({
-              firstName: "",
-              lastName: "",
-              email: "",
-              phone: "",
-              bio: "",
-              password: "",
-              password2: "",
-              wayToContact: "",
-              msg: ""
-            });
-            this.props.history.push("/");
-          } else {
-            alert("Registration Failed. Try Again!");
-          }
-        })
-        .catch(err => {
-          throw err;
+      if (this.state.password !== this.state.password2)
+        alert("Password Didn't Matched");
+      else {
+        this.setState({
+          msg: "Please Wait..."
         });
+        axios
+          .post("http://localhost:5001/add-user", { user: this.state })
+          .then(res => {
+            console.log(res);
+            if (res.data.userAdded && res.data.accountAdded) {
+              alert("Registration Successful...");
+              this.setState({
+                firstName: "",
+                lastName: "",
+                email: "",
+                phone: "",
+                bio: "",
+                password: "",
+                password2: "",
+                wayToContact: "",
+                msg: ""
+              });
+              this.props.history.push("/");
+            } else {
+              alert("Registration Failed. Try Again!");
+            }
+          })
+          .catch(err => {
+            throw err;
+          });
+      }
     }
   };
 

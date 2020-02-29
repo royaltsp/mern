@@ -7,17 +7,18 @@ import Footer from "../components/Footer";
 import { connect } from "react-redux";
 import Profile from "../components/Profile";
 import PageInfo from "../components/PageInfo";
+import { withRouter } from "react-router";
 
-function ProfilePage() {
+function ProfilePage(props) {
   // fetch("/blockchain")
   // .then(res => res.json())
   // .then(res=> {
   //   console.log(res);
   // })
+  if (localStorage.getItem("mern") === null) props.history.push("/");
   return (
     <div className="profile-page">
-      hello
-      {/* <PreLoader /> */} */}
+      {/* <PreLoader /> */}
       <Header />
       <PageInfo />
       <Profile />
@@ -27,4 +28,4 @@ function ProfilePage() {
   );
 }
 
-export default ProfilePage;
+export default withRouter(ProfilePage);

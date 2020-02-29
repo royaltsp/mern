@@ -13,22 +13,18 @@ class SignIn extends React.Component {
       password: "",
       msg: ""
     };
-
-    console.log(this.props.user);
-    saveUser("shubham");
-    console.log(this.props.user);
   }
 
   handleSubmit = e => {
     e.preventDefault();
-    if (this.props.email === "" && this.state.password === "")
+    if (this.state.email === "" && this.state.password === "")
       alert("Please Provide All Details...");
     else {
       this.setState({ msg: "Please Wait" });
       axios
         .post("http://localhost:5001/check-user", {
           user: {
-            email: this.props.email,
+            email: this.state.email,
             password: this.state.password
           }
         })
@@ -49,6 +45,7 @@ class SignIn extends React.Component {
 
   handleChane = e => {
     const { id, value } = e.target;
+    if (id === "email") changeEmail(value);
     this.setState({
       [id]: value
     });
@@ -64,9 +61,9 @@ class SignIn extends React.Component {
               <input
                 id="email"
                 className="check-form"
-                type="text"
+                type="email"
                 placeholder="Username / Email*:"
-                value={this.props.email}
+                value={this.state.email}
                 onChange={this.handleChane}
               />
               <span>

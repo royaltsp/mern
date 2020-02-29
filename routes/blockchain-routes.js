@@ -1,6 +1,7 @@
 const rp = require("request-promise");
 const Blockchain = require("../dev/blockchain");
 const mongoose = require("mongoose");
+const axios = require("axios");
 const uuid = require("uuid/v1"); // to create unique id/string
 const node_addr = uuid()
   .split("-")
@@ -22,7 +23,7 @@ module.exports = app => {
         console.log("Written");
       }
     );
-    console.log(Securum);
+    // console.log(Securum);
   };
 
   Securum = new Blockchain();
@@ -44,12 +45,19 @@ module.exports = app => {
     res.sendFile("../dev/block-explorer/index.html", { root: __dirname });
   });
 
+  app.get("/reset", (req, res) => {
+    fs.unlinkSync("./data/node1.json");
+    res.send({
+      msg: "BlockChain Reseted"
+    });
+  });
+
   app.post("/transaction", function(req, res) {
     // console.log(req);
     // res.send(`The Amonunt of Transaction is ${req.body.amount} Securum.`);
     // const block_index = Securum.createNewTransaction(req.body.amount, req.body.sender, req.body.recipient);
     // res.json({ notes: `Transaction will be added in block ${block_index}`});
-    // console.log(Securum);
+    console.log(Securum);
     const new_transaction = req.body;
     const block_index = Securum.addTransactionToPendingTransactions(
       new_transaction
@@ -95,7 +103,7 @@ module.exports = app => {
 
     Promise.all(request_promises).then(data => {
       writeSecurum();
-      console.log(Securum);
+      // console.log(Securum);
       res.json({
         note: "Transaction created and broadcast successfully.",
         error: false
@@ -115,9 +123,29 @@ module.exports = app => {
     const senders = new Array();
     current_block_data.transactions.forEach(transaction => {
       if (transaction.sender != "00" && node_addr != transaction.recipient)
-        senders.push(transaction.sender);
+        senders.push({ uid: transaction.sender, amount: transaction.amount });
     });
     console.log("Transaction Senders :", senders);
+
+    senders.forEach(sender => {
+      const uid = sender.uid.split("$_$")[1];
+      axios
+        .post("http://localhost:5001/update-balance", {
+          uid: uid,
+          amount: sender.amount
+        })
+        .then(res => {
+          console.log(res.data);
+          if (!res.data.error) {
+            // console.log(res)
+            console.log(sender.uid + " - done");
+          } else console.log(sender.uid + " - fail");
+        })
+        .catch(err => {
+          console.error(err);
+          throw err;
+        });
+    });
 
     const nonce = Securum.proofOfWork(prev_block_hash, current_block_data);
     const current_block_hash = Securum.hashBlock(
@@ -168,7 +196,7 @@ module.exports = app => {
       })
       .then(data => {
         writeSecurum();
-        console.log(Securum);
+        // console.log(Securum);
         res.json({
           note: "New Block Mined and broadcasted Successfully",
           block: new_block

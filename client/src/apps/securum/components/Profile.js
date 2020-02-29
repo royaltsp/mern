@@ -5,26 +5,26 @@ import DashBoard from "./DashBoard";
 export default function Profile() {
   return (
     <div>
-      <section class="blog-page spad">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-8">
+      <section className="blog-page spad">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-8">
               <DashBoard />
             </div>
-            <div class="col-lg-4 col-md-6 sideber pt-5 pt-lg-0">
-              <div class="widget-area">
-                <h4 class="widget-title">Profile</h4>
+            <div className="col-lg-4 col-md-6 sideber pt-5 pt-lg-0">
+              <div className="widget-area">
+                <h4 className="widget-title">Profile</h4>
                 <p>Hello </p>
-                <form class="widget-subscribe-from">
+                <form className="widget-subscribe-from">
                   <input type="text" placeholder="Search Here..." />
-                  <button class="site-btn sb-full-- sb-gradients">
+                  <button className="site-btn sb-full-- sb-gradients">
                     Search
                   </button>
                 </form>
               </div>
-              <div class="widget-area">
-                <div class="widget">
-                  <h4 class="widget-title">Categories</h4>
+              <div className="widget-area">
+                <div className="widget">
+                  <h4 className="widget-title">Categories</h4>
                   <ul>
                     <li>
                       <Link to="#">DashBoard</Link>
@@ -46,9 +46,9 @@ export default function Profile() {
                     </li>
                   </ul>
                 </div>
-                <div class="widget">
-                  <h4 class="widget-title">Popular Posts</h4>
-                  <ul class="popular-posts">
+                <div className="widget">
+                  <h4 className="widget-title">Popular Posts</h4>
+                  <ul className="popular-posts">
                     <li>
                       <span>22 dec 2018</span>
                       <h5>
@@ -87,9 +87,9 @@ export default function Profile() {
                     </li>
                   </ul>
                 </div>
-                <div class="widget">
-                  <h4 class="widget-title">Recent Tweets</h4>
-                  <ul class="twitter-widget">
+                <div className="widget">
+                  <h4 className="widget-title">Recent Tweets</h4>
+                  <ul className="twitter-widget">
                     <li>
                       <h5>Why Does The Securum Price Move So Much?</h5>
                       <Link to="https://t.co/MSQVkamNwa">
@@ -106,20 +106,20 @@ export default function Profile() {
                     </li>
                   </ul>
                 </div>
-                <div class="widget">
-                  <h4 class="widget-title">Follow Us</h4>
-                  <div class="social">
-                    <Link to="" class="facebook">
-                      <i class="fa fa-facebook"></i>
+                <div className="widget">
+                  <h4 className="widget-title">Follow Us</h4>
+                  <div className="social">
+                    <Link to="" className="facebook">
+                      <i className="fa fa-facebook"></i>
                     </Link>
-                    <Link to="" class="google">
-                      <i class="fa fa-google-plus"></i>
+                    <Link to="" className="google">
+                      <i className="fa fa-google-plus"></i>
                     </Link>
-                    <Link to="" class="instagram">
-                      <i class="fa fa-instagram"></i>
+                    <Link to="" className="instagram">
+                      <i className="fa fa-instagram"></i>
                     </Link>
-                    <Link to="" class="twitter">
-                      <i class="fa fa-twitter"></i>
+                    <Link to="" className="twitter">
+                      <i className="fa fa-twitter"></i>
                     </Link>
                   </div>
                 </div>

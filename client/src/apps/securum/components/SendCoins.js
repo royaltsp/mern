@@ -34,31 +34,12 @@ class SendCoins extends React.Component {
           })
           .then(res => {
             if (!res.data.error) {
-              axios
-                .post("http://localhost:5001/update-balance", {
-                  acc_id: this.state.account._id,
-                  balance: this.state.account.balance - this.state.coins
-                })
-                .then(res => {
-                  if (!res.data.error) {
-                    // console.log(res)
-                    alert("Transaction Created Successfully");
-                    this.setState({
-                      coins: "",
-                      recipient: "",
-                      msg: "Transaction Done",
-                      account: {
-                        ...this.state.account,
-                        balance: this.state.account.balance - this.state.coins
-                      }
-                    });
-                    // console.log(this.state);
-                  } else alert("Transaction Failed!");
-                })
-                .catch(err => {
-                  console.error(err);
-                  throw err;
-                });
+              alert("Transaction Created Successfully");
+              this.setState({
+                coins: "",
+                recipient: "",
+                msg: "Transaction Done"
+              });
             } else alert("Transaction Failed!");
           })
           .catch(err => {

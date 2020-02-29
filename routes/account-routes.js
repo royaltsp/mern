@@ -1,47 +1,62 @@
-const mongoose = require('mongoose')
-require('../models/account-model')
-const Account = mongoose.model('Account')
-const jwt = require('jsonwebtoken')
+const mongoose = require("mongoose");
+require("../models/account-model");
+const Account = mongoose.model("Account");
+const jwt = require("jsonwebtoken");
+const axios = require("axios");
 
 module.exports = app => {
-  app.get('/account/:uid', (req, res) => {
+  app.get("/account/:uid", (req, res) => {
     const uid = req.params.uid;
     Account.find({ uid: uid }).then(data => {
       if (data.length > 0) {
         res.send({
           error: false,
           account: data[0]
-        })
+        });
       } else {
         res.send({
           error: true,
           message: "No Account"
-        })
+        });
       }
-    })
-  })
+    });
+  });
 
-  app.post('/update-balance', (req, res) => {
+  app.post("/update-balance", (req, res) => {
     const account = req.body;
-    Account.update({_id: account.acc_id}, {balance: account.balance}, {multi: true, new: true})
-    .then(data => {
-      if(data)
-        res.send({
-          error: false,
-          data: data
-        })
-      else
+    Account.findOne({ uid: req.body.uid }).then(async data => {
+      if (data) {
+        const newBalance = Number(data.balance) - Number(account.amount);
+        await Account.findOneAndUpdate(
+          { _id: data._id },
+          { balance: newBalance },
+          { new: true }
+        )
+          .then(data => {
+            if (data)
+              res.send({
+                error: false,
+                data: data
+              });
+            else
+              res.send({
+                error: true,
+                data: "Account Not Updated"
+              });
+          })
+          .catch(err => {
+            console.error(err);
+            throw err;
+          });
+      } else {
         res.send({
           error: true,
-          data: "Account Not Updated"
-        })
-    }).catch(err => {
-      console.error(err);
-      throw err;
-    })
-
-  })
-}
+          msg: "Account Not Found"
+        });
+      }
+    });
+  });
+};
 
 function generateToken(user) {
   console.log(user);
@@ -55,7 +70,7 @@ function generateToken(user) {
     wayToContact: user.wayToContact
   };
 
-  return token = jwt.sign(u, 'mern', {
+  return (token = jwt.sign(u, "mern", {
     expiresIn: 60 * 60 * 24 // 24 Hours
-  })
+  }));
 }
