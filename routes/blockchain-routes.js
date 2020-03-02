@@ -24,11 +24,6 @@ module.exports = (app) => {
 
 
   app.post('/transaction', function (req, res) {
-    // console.log(req);
-    // res.send(`The Amonunt of Transaction is ${req.body.amount} Securum.`);
-    // const block_index = Securum.createNewTransaction(req.body.amount, req.body.sender, req.body.recipient);
-    // res.json({ notes: `Transaction will be added in block ${block_index}`});
-    // console.log(Securum);
     const new_transaction = req.body;
     const block_index = Securum.addTransactionToPendingTransactions(new_transaction);
     res.json({ note: `Transaction will be added in block ${block_index}` });
@@ -69,12 +64,11 @@ module.exports = (app) => {
 
     Promise.all(request_promises)
       .then(data => {
-        res.json({ 
-            note: 'Transaction created and broadcast successfully.',
-            error: false
-          });
+        res.json({
+          note: 'Transaction created and broadcast successfully.',
+          error: false
+        });
       });
-
   });
 
 
