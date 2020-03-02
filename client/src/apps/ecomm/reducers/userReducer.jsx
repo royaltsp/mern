@@ -1,22 +1,12 @@
-const INITIAL_STATE = {
-  firstName: "Shubham"
-}
+const INITIAL_STATE = {}
 
 const userReducer = (state = INITIAL_STATE, action) => {
 
   switch (action.type) {
-    case "CHANGE_NAME":
-      return {
-        firstName: action.payload
-      }
-    case "HANDLE_NAME":
-      return {
-        firstName: action.payload
-      }
-    case "CHANGE_NAME_AUTOMATICALLY":
-      return {
-        firstName: action.payload
-      }
+    case "SAVE_USER":
+      return action.payload
+    case "CLEAR_USER":
+      return {}
     default:
       return state
   }

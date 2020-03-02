@@ -4,8 +4,10 @@ import FormInput from './FormInput';
 import CustomButton from './CustomButton';
 
 import './css/SignIn.scss';
-const axios = require('axios');
-// const jwt = require("jsonwebtoken");
+import { connect } from 'react-redux';
+
+import { signIn } from '../actions/userActions'
+import { withRouter } from 'react-router';
 
 class SignIn extends React.Component {
   constructor(props) {
@@ -13,27 +15,23 @@ class SignIn extends React.Component {
 
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      msg: ''
     };
   }
 
   handleSubmit = async (event) => {
     event.preventDefault();
-    this.checkUserPresentInDatabase();
+    if (this.props.signIn(this.state)) {
+      this.setState({ msg: "Login Done" })
+      setTimeout(() => {
+        this.props.history.push('/')
+      }, 2000)
+    } else {
+      this.setState({ msg: "Login Failed" })
+    }
+    console.log(this.props.user);
   };
-
-  checkUserPresentInDatabase() {
-    axios.post('http://localhost:8000/check-user', this.state)
-      .then(res => {
-        if (res.data === true) {
-          alert("User Present In Database")
-        } else {
-          alert("Wrong Email OR Password")
-        }
-      }).catch(err => {
-        throw err;
-      })
-  }
 
   handleChange = event => {
     const { value, name } = event.target;
@@ -63,6 +61,13 @@ class SignIn extends React.Component {
             label='password'
             required
           />
+
+          {
+            this.state.msg ?
+              <div>{this.state.msg}<br /></div>
+              : null
+          }
+
           <div className='buttons'>
             <CustomButton type='submit'> Sign in </CustomButton>
             {/* <CustomButton onClick={signInWithGoogle} isGoogleSignIn>
@@ -75,6 +80,17 @@ class SignIn extends React.Component {
   }
 }
 
+const mapStateToProps = ({ user }) => {
+  return {
+    user: user
+  }
+}
 
+const mapDispatchToProps = dispatch => {
+  return {
+    signIn: user => dispatch(signIn(user))
+  }
+}
 
-export default SignIn;
+export default connect(mapStateToProps
+  , mapDispatchToProps)(withRouter(SignIn));

@@ -7,44 +7,43 @@ const jwt = require('jsonwebtoken')
 
 module.exports = app => {
   app.post('/add-user', (req, res) => {
-    let response = {
-      userAdded: false,
-      accountAdded: false
-    };
-    const user = new User(req.body.user);
+    const user = new User(req.body);
     user.save().then(data => {
-      response.userAdded = true
-      console.log("userAdded");
-      const account = new Account({
-        uid: data._id,
-        balance: 20
-      })
-      account.save().then(data => {
-        response.accountAdded = true
-        console.log("accountAdded");
-        res.send(response);
-      })
+      if (data) {
+        console.log("User Added")
+        res.send({ data })
+      }
+      else
+        res.send({ msg: "User Not Added" })
     }).catch(err => {
       console.error(err);
-      throw err;
+      res.status(400).send({ err, msg: "Error while saving User" })
     })
-    // res.send(response)
   })
 
   app.post('/check-user', (req, res) => {
-    let user = req.body.user;
-    User.find({ email: user.email, password: user.password }).then(data => {
-      if (data.length > 0) {
-        res.send({
-          error: false,
-          token: generateToken(data[0])
-        })
-      } else {
-        res.send({
-          error: true,
-          message: "User Not Found"
-        })
+    User.findOne({ email: req.body.email }).then(user => {
+      if (user) {
+        if (user.password === req.body.password) {
+          console.log("User Present");
+          const payload = {
+            _id: user._id,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email
+          }
+          let token = jwt.sign(payload, 'ecommSecret', { expiresIn: 1440 })
+          res.send({
+            user: payload,
+            token: token
+          })
+        } else {
+          res.send({ msg: "Wrong Email or Password" })
+        }
       }
+    }).catch(err => {
+      console.error(err);
+      res.send({ msg: "Error While Checking User" })
     })
   })
 
@@ -66,7 +65,7 @@ module.exports = app => {
 
   app.get('/account/:uid', (req, res) => {
     const uid = req.params.uid;
-    Account.find({uid: uid}).then(data => {
+    Account.find({ uid: uid }).then(data => {
       if (data.length > 0) {
         res.send({
           error: false,
@@ -83,7 +82,7 @@ module.exports = app => {
 }
 
 function generateToken(user) {
-  console.log(user);
+  // console.log(user);
   let u = {
     _id: user._id,
     firstName: user.firstName,

@@ -1,55 +1,39 @@
 import React from "react";
-// import "./App.css";
-import HomePage from "./pages/HomePage";
 
-import { Route, Switch, BrowserRouter } from "react-router-dom";
-import ShopPage from "./pages/ShopPage";
-import Header from "./components/Header";
-import SignInAndSignUpPage from "./pages/SignInAndSignUpPage";
+import HomePage from './pages/HomePage'
+import Header from "../ecomm/components/Header";
 import { connect } from "react-redux";
 
-// const jwt = require('jsonwebtoken');
 
 class App extends React.Component {
-
-  signedIn() {
-    this.setState({ isSignedIn: !this.state.isSignedIn })
-  }
-
-  setUser(user) {
-    this.setState({ user: user })
+  constructor(props) {
+    super(props);
   }
 
   componentDidMount() {
-
-  }
-
-  componentWillUnmount() {
-    //this.state.user.signOut();
+    this.props.getUserByToken()
   }
 
   render() {
     console.log("App Render");
     return (
-      <div>
-        <BrowserRouter>
-          <Header />
-          <Route exact path='/' component={HomePage} />
-          <Route path='/shop-page' component={ShopPage} />
-          <Route path='/sign-in-and-sign-up-page' component={SignInAndSignUpPage} />
-        </BrowserRouter>
+      <div className="Ecomm">
+        <HomePage />
       </div>
     );
   }
 }
 
-// const tokenExist = () => {
-//   return localStorage.getItem("userSigned")
-// }
-const mapStateToProps = (state) => {
+const mapStateToProps = ({ user }) => {
   return {
-    firstName: state.userReducer.firstName
+    user: user
   }
 }
 
-export default App;
+const mapDispatchToProps = dispatch => {
+  return {
+    getUserByToken: () => getUserByToken()
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

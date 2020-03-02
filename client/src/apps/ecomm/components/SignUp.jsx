@@ -1,68 +1,53 @@
 import React from 'react';
-// import mysql from 'mysql';
 
 import FormInput from './FormInput';
 import CustomButton from './CustomButton';
 
 import './css/SignUp.scss';
-import { connect } from 'react-redux';
 
-const axios = require('axios');
+import { signUp } from '../functions/sign-up'
 
 class SignUp extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       firstName: '',
       lastName: '',
       email: '',
-      phone: '',
-      bio: '',
       password: '',
-      confirmPassword: '',
-      wayToContact: ''
+      password2: '',
+      msg: ''
     };
   }
 
 
   handleSubmit = async event => {
     event.preventDefault();
-    const { password, confirmPassword } = this.state;
+    const { firstName, lastName, email, password, password2 } = this.state;
 
-    if (password !== confirmPassword) {
-      alert("passwords don't match");
-      return;
-    }
+    if (password !== password2)
+      this.setState({ msg: "Password Dosen't Matched" })
 
-    try {
+    if (!(firstName && lastName && email && password && password2))
+      this.setState({ msg: "All Fields Are Necessary" })
 
-      await this.createUserWithEmailAndPassword();
-
+    if (signUp({ firstName, lastName, email, password })) {
       this.setState({
         firstName: '',
+        lastName: '',
         email: '',
         password: '',
-        confirmPassword: ''
+        password2: '',
+        msg: "Registration Successful"
       });
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  createUserWithEmailAndPassword() {
-    axios.post('http://localhost:8000/add-user', this.state)
-      .then(res => {
-        console.log(res);
-      }).catch(err => {
-        throw err;
-      })
+    } else
+      this.setState({ msg: "Registration Failed" })
   }
 
   handleChange = event => {
-    const { name, value } = event.target;
-
-    this.setState({ [name]: value });
+    const { id, value } = event.target;
+    this.setState({ [id]: value });
   };
 
   componentDidMount() {
@@ -76,7 +61,7 @@ class SignUp extends React.Component {
         <form className='sign-up-form' onSubmit={this.handleSubmit}>
           <FormInput
             type='text'
-            name='firstName'
+            id='firstName'
             value={this.state.firstName}
             onChange={this.handleChange}
             label='First Name'
@@ -84,7 +69,7 @@ class SignUp extends React.Component {
           />
           <FormInput
             type='text'
-            name='lastName'
+            id='lastName'
             value={this.state.lastName}
             onChange={this.handleChange}
             label='Last Name'
@@ -92,7 +77,7 @@ class SignUp extends React.Component {
           />
           <FormInput
             type='email'
-            name='email'
+            id='email'
             value={this.state.email}
             onChange={this.handleChange}
             label='Email'
@@ -100,7 +85,7 @@ class SignUp extends React.Component {
           />
           <FormInput
             type='password'
-            name='password'
+            id='password'
             value={this.state.password}
             onChange={this.handleChange}
             label='Password'
@@ -108,12 +93,17 @@ class SignUp extends React.Component {
           />
           <FormInput
             type='password'
-            name='confirmPassword'
-            value={this.state.confirmPassword}
+            id='password2'
+            value={this.state.password2}
             onChange={this.handleChange}
             label='Confirm Password'
             required
           />
+          {
+            this.state.msg !== '' ?
+              <span>{this.state.msg}<br /><br /></span>
+              : null
+          }
           <CustomButton type='submit'>SIGN UP</CustomButton>
         </form>
       </div>
@@ -121,10 +111,5 @@ class SignUp extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    firstName: state.userReducer.firstName
-  }
-}
 
-export default connect(mapStateToProps)(SignUp);
+export default SignUp;

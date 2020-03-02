@@ -6,12 +6,35 @@ import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk'
-// import myReducer from './apps/ecomm/reducers/myReducer';
-// import userReducer from './apps/ecomm/reducers/userReducer';
-import allReducers from './apps/ecomm/reducers/allReducers';
+
+import ecommReducer from './apps/ecomm/reducers/allReducers';
+
+function saveToLocalStorage(state) {
+    try {
+        const serializeState = JSON.stringify(state)
+        localStorage.setItem('state', serializeState)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+function loadFromLocalStorage() {
+    try {
+        const serializeState = localStorage.getItem('state')
+        if (serializeState === null) return undefined
+        return JSON.parse(serializeState)
+    } catch (error) {
+        console.log(error)
+        return undefined
+    }
+}
+
+const persistedState = loadFromLocalStorage()
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const myStore = createStore(allReducers, composeEnhancers(applyMiddleware(thunk)));
+const myStore = createStore(ecommReducer, persistedState, composeEnhancers(applyMiddleware(thunk)));
+
+myStore.subscribe(() => saveToLocalStorage(myStore.getState()))
 
 ReactDOM.render(
     <div>

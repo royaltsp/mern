@@ -5,14 +5,14 @@ import { withRouter } from 'react-router';
 
 const randomInt = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
-}
+} 
 
 function Greeting(props) {
   console.log("Greeting Render")
   setTimeout(() => {
     props.changeNameAutomatically("Saurabh")
   }, 2000);
-  // var names = new Array("Shubham", "Saurabh", "Pavan", "Rushi");
+  var names = new Array("Shubham", "Saurabh", "Pavan", "Rushi");
   return (
     <div>
       <span style={{
@@ -24,9 +24,9 @@ function Greeting(props) {
       }}>
         Hello {props.firstName}!
       </span>
-      {/* <button
+      <button
         className="btn btn-primary"
-        onClick={() => props.changeName(names[randomInt(0, 3)])}
+        onClick={() => props.changeName("Saurabh")}
       >
         Change Name
       </button>
@@ -35,14 +35,14 @@ function Greeting(props) {
         id="firstName"
         value={props.firstName}
         onChange={(e) => props.handleName(e)}
-      /> */}
+      />
     </div>
   )
 }
 
 const mapStateToProps = state => {
   return {
-    appName: state.appReducer.appName,
+    // appName: state.appReducer.appName,
     firstName: state.userReducer.firstName
   }
 }

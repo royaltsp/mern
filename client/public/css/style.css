@@ -599,7 +599,8 @@ ol {
 }
 
 .member-social {
-	padding-top: 25px;
+	height: 70px;
+	padding-top: 10px;
 	background: #fff;
 	position: relative;
 	z-index: 2;
