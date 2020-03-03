@@ -5,10 +5,10 @@ import { withRouter } from 'react-router';
 
 const randomInt = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
-} 
+}
 
 function Greeting(props) {
-  console.log("Greeting Render")
+  // console.log("Greeting Render")
   setTimeout(() => {
     props.changeNameAutomatically("Saurabh")
   }, 2000);

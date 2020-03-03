@@ -1,9 +1,16 @@
+
 const dbs = {
 	tspmongo: 'tspmongo',
 	ecomm: 'ecomm'
 };
+
+const connString = {
+	local: "mongodb://localhost:27017/tspmongo",
+	remote: `mongodb+srv://tsp:tsp321@cluster0-pfx69.mongodb.net/${dbs.tspmongo}?retryWrites=true&w=majority`
+}
+
 module.exports = {
-	mongourl: `mongodb+srv://tsp:tsp321@cluster0-pfx69.mongodb.net/${dbs.tspmongo}?retryWrites=true&w=majority`
+	mongourl: connString.local
 }
 
 /*

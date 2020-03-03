@@ -18,11 +18,15 @@ class SignIn extends React.Component {
       password: '',
       msg: ''
     };
+
+    if (props.currentUser)
+      props.history.push('/')
   }
 
   handleSubmit = async (event) => {
     event.preventDefault();
-    if (this.props.signIn(this.state)) {
+    await this.props.signIn(this.state);
+    if (this.props.currentUser) {
       this.setState({ msg: "Login Done" })
       setTimeout(() => {
         this.props.history.push('/')
@@ -30,7 +34,6 @@ class SignIn extends React.Component {
     } else {
       this.setState({ msg: "Login Failed" })
     }
-    console.log(this.props.user);
   };
 
   handleChange = event => {
@@ -82,7 +85,7 @@ class SignIn extends React.Component {
 
 const mapStateToProps = ({ user }) => {
   return {
-    user: user
+    currentUser: user.currentUser
   }
 }
 

@@ -26,23 +26,25 @@ class SignUp extends React.Component {
     event.preventDefault();
     const { firstName, lastName, email, password, password2 } = this.state;
 
-    if (password !== password2)
-      this.setState({ msg: "Password Dosen't Matched" })
-
     if (!(firstName && lastName && email && password && password2))
       this.setState({ msg: "All Fields Are Necessary" })
-
-    if (signUp({ firstName, lastName, email, password })) {
-      this.setState({
-        firstName: '',
-        lastName: '',
-        email: '',
-        password: '',
-        password2: '',
-        msg: "Registration Successful"
-      });
-    } else
-      this.setState({ msg: "Registration Failed" })
+    else {
+      if (password !== password2)
+        this.setState({ msg: "Password Dosen't Matched" })
+      else {
+        if (signUp({ firstName, lastName, email, password })) {
+          this.setState({
+            firstName: '',
+            lastName: '',
+            email: '',
+            password: '',
+            password2: '',
+            msg: "Registration Successful"
+          });
+        } else
+          this.setState({ msg: "Registration Failed" })
+      }
+    }
   }
 
   handleChange = event => {

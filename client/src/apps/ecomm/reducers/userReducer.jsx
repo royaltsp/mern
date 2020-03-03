@@ -1,12 +1,20 @@
-const INITIAL_STATE = {}
+const INITIAL_STATE = {
+  currentUser: null
+}
 
 const userReducer = (state = INITIAL_STATE, action) => {
 
   switch (action.type) {
     case "SAVE_USER":
-      return action.payload
-    case "CLEAR_USER":
-      return {}
+      return {
+        ...state,
+        currentUser: action.payload
+      }
+    case "REMOVE_USER":
+      return {
+        ...state,
+        currentUser: null
+      }
     default:
       return state
   }

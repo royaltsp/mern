@@ -4,9 +4,9 @@ import { connect } from "react-redux";
 import { ReactComponent as Logo } from '../assets/crown.svg';
 import './css/Header.scss';
 import { signOut } from '../functions/sign-out';
+import { removeUser } from '../actions/userActions';
 
 const Header = (props) => {
-  console.log(props.user);
   return (
     <div className="header">
       <Link className="logo-container" to="/">
@@ -17,8 +17,8 @@ const Header = (props) => {
         <Link className='option' to="/contact-page">Contact</Link>
         <Link className='option' to="/about-page">About</Link>
         {
-          localStorage.getItem('ecommToken') ?
-            <div className="option" onClick={() => { signOut() }}> SIGN OUT </div>
+          props.currentUser ?
+            <div className="option" onClick={() => { signOut(props) }}> SIGN OUT </div>
             :
             <Link className="option" to="/sign-in-and-sign-up-page"> Sign In </Link>
         }
@@ -29,8 +29,14 @@ const Header = (props) => {
 
 const mapStateToProps = ({ user }) => {
   return {
-    user: user
+    currentUser: user.currentUser
   }
 }
 
-export default connect(mapStateToProps)(withRouter(Header));
+const mapDispatchToProps = dispatch => {
+  return {
+    removeUser: () => dispatch(removeUser())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Header));
