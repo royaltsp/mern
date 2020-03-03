@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js 5000 http://localhost:5000",
+    "start": "npm run node1",
     "//": "nodemon will restart server on changes",
     "client": "npm run start --prefix client",
     "ecomm": "npm run start --prefix ecomm",
