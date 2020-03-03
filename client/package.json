@@ -28,6 +28,7 @@
     "request": "^2.88.2",
     "request-promise": "^4.2.5",
     "sha256": "^0.2.0",
+    "styled-components": "^5.0.1",
     "uniqid": "^5.2.0",
     "uuid": "^7.0.1",
     "webpack": "^4.41.5"
