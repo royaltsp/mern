@@ -16,7 +16,7 @@ export const removeUser = () => {
 
 export const signIn = user => {
   return dispatch => {
-    return axios.post('http://localhost:5001/check-user', JSON.stringify(user), {
+    return axios.post('/check-user', JSON.stringify(user), {
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json'
