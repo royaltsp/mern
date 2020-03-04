@@ -54,7 +54,7 @@ function Hero(props) {
 
 const mapStateToProps = state => {
   return {
-    email: state.userReducer.email
+    email: state.user.email
   }
 }
 

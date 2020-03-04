@@ -107,8 +107,8 @@ class SignIn extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    email: state.userReducer.email,
-    user: state.userReducer
+    email: state.user.email,
+    user: state.user
   };
 };
 

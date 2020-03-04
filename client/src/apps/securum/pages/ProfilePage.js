@@ -9,9 +9,6 @@ import PageInfo from "../components/PageInfo";
 import { withRouter } from "react-router";
 
 class ProfilePage extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   // fetch("/blockchain")
   // .then(res => res.json())
