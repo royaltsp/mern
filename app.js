@@ -18,10 +18,10 @@ app.use(bodyParser.json());
 // serving static files
 // app.use(express.static(__dirname + '/public'));
 
-app.use(express.static('tsp-mern-client/build'))
+app.use(express.static('client/build'))
 const path = require('path')
 app.get('/', (req, res) => {
-  res.sendFile(__dirname, 'tsp-mern-client', 'build', 'index.html')
+  res.sendFile(__dirname, 'client', 'build', 'index.html')
 })
 
 //import routes
