@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const { mongourl } = require('./config/keys')
 const express = require('express')
 const app = express()
-const port = process.argv[2] || process.env.PORT || 5000;
+const port = process.env.PORT || process.argv[2] || 5000;
 const bodyParser = require("body-parser");
 const cors = require('cors');
 app.use(cors())
