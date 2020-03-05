@@ -5,11 +5,11 @@
   "scripts": {
     "start": "npm run node1",
     "//": "nodemon will restart server on changes",
-    "client": "npm run start --prefix tsp-mern-client",
+    "client": "npm run start --prefix client",
     "ecomm": "npm run start --prefix ecomm",
     "//comment": "start npm at different directory i.e.client",
     "server": "npm run node1",
-    "dev": "concurrently \"npm run tsp-mern-client\" \"npm run node1\"",
+    "dev": "concurrently \"npm run client\" \"npm run node1\"",
     "test": "echo \"Error: no test specified\" && exit 1",
     "node1": "nodemon --watch / -e js app.js 5001 http://localhost:5001",
     "node2": "nodemon --watch / -e js app.js 5002 http://localhost:5002",
