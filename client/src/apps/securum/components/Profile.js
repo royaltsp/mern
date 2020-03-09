@@ -28,7 +28,7 @@ class Profile extends React.Component {
           await this.setState({
             user: { ...decoded }
           });
-          await fetch(`http://localhost:5001/account/${this.state.user._id}`)
+          await fetch(`/account/${this.state.user._id}`)
             .then(res => res.json())
             .then(res => {
               this.setState({
@@ -39,7 +39,7 @@ class Profile extends React.Component {
       });
     }
 
-    fetch("http://localhost:5001/users")
+    fetch("/users")
       .then(res => res.json())
       .then(res => {
         this.setState({

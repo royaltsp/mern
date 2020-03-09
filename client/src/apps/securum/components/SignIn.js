@@ -22,7 +22,7 @@ class SignIn extends React.Component {
     else {
       this.setState({ msg: "Please Wait" });
       axios
-        .post("http://localhost:5001/check-user", {
+        .post("/check-user", {
           user: {
             email: this.state.email,
             password: this.state.password

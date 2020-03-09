@@ -27,7 +27,7 @@ class SendCoins extends React.Component {
       } else {
         this.setState({ msg: "Please Wait" });
         axios
-          .post("http://localhost:5001/transaction/broadcast", {
+          .post("/transaction/broadcast", {
             amount: Number(this.state.coins),
             sender: this.state.user.firstName + "$_$" + this.state.user._id,
             recipient: this.state.recipient
@@ -68,7 +68,7 @@ class SendCoins extends React.Component {
           await this.setState({
             user: { ...decoded }
           });
-          await fetch(`http://localhost:5001/account/${this.state.user._id}`)
+          await fetch(`/account/${this.state.user._id}`)
             .then(res => res.json())
             .then(res => {
               this.setState({
@@ -79,7 +79,7 @@ class SendCoins extends React.Component {
       });
     }
 
-    fetch("http://localhost:5001/users")
+    fetch("/users")
       .then(res => res.json())
       .then(res => {
         this.setState({

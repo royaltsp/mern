@@ -137,7 +137,7 @@ module.exports = app => {
     senders.forEach(sender => {
       const uid = sender.uid.split("$_$")[1];
       axios
-        .post("http://localhost:5001/update-balance", {
+        .post("/update-balance", {
           uid: uid,
           amount: sender.amount
         })

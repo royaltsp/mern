@@ -38,7 +38,7 @@ class SignUp extends React.Component {
           msg: "Please Wait..."
         });
         axios
-          .post("http://localhost:5001/add-user", { user: this.state })
+          .post("/add-user", { user: this.state })
           .then(res => {
             console.log(res);
             if (res.data.userAdded && res.data.accountAdded) {

@@ -1,21 +1,21 @@
 {
   "name": "mern",
   "version": "1.0.0",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
-    "start": "npm run node1",
+    "start": "node server.js",
     "//": "nodemon will restart server on changes",
     "client": "npm run start --prefix client",
-    "ecomm": "npm run start --prefix ecomm",
-    "//comment": "start npm at different directory i.e.client",
-    "server": "npm run node1",
-    "dev": "concurrently \"npm run client\" \"npm run node1\"",
+    "//": "start npm at different directory i.e.client",
+    "server": "nodemon server.js",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "node1": "nodemon --watch / -e js app.js 5001 http://localhost:5001",
-    "node2": "nodemon --watch / -e js app.js 5002 http://localhost:5002",
-    "node3": "nodemon --watch / -e js app.js 5003 http://localhost:5003",
-    "node4": "nodemon --watch / -e js app.js 5004 http://localhost:5004",
-    "node5": "nodemon --watch / -e js app.js 5005 http://localhost:5005"
+    "node1": "nodemon --watch / -e js server.js 5001 http://localhost:5001",
+    "node2": "nodemon --watch / -e js server.js 5002 http://localhost:5002",
+    "node3": "nodemon --watch / -e js server.js 5003 http://localhost:5003",
+    "node4": "nodemon --watch / -e js server.js 5004 http://localhost:5004",
+    "node5": "nodemon --watch / -e js server.js 5005 http://localhost:5005",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "",
   "license": "ISC",
@@ -36,5 +36,6 @@
   },
   "devDependencies": {},
   "keywords": [],
-  "description": "My MERN App"
+  "description": "My MERN App",
+  "proxy": "http://localhost:5000"
 }

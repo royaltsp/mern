@@ -14,7 +14,7 @@ import TableResize from "./apps/table-resize/TableResize";
 
 import { loadFromLocalStorage, saveToLocalStorage } from './redux-persist'
 const apps = ['ecomm', 'securum', 'table-resize'];
-const appNumber = 3;
+const appNumber = 2;
 
 const allReducers = require(`./apps/${apps[appNumber - 1]}/reducers/allReducers`).allReducers;
 
