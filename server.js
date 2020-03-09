@@ -32,11 +32,11 @@ require("./routes/account-routes")(app);
 
 app.listen(port, () => {
   console.log(`Listening on ${port}`);
-  mongoose.connect(
-    mongourl,
-    { useNewUrlParser: true, useUnifiedTopology: true },
-    () => {
-      console.log("MongoDB Connection Success");
-    }
-  );
+  // mongoose.connect(
+  //   mongourl,
+  //   { useNewUrlParser: true, useUnifiedTopology: true },
+  //   () => {
+  //     console.log("MongoDB Connection Success");
+  //   }
+  // );
 });

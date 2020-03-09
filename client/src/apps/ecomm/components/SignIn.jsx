@@ -9,6 +9,8 @@ import { connect } from 'react-redux';
 import { signIn } from '../actions/userActions'
 import { withRouter } from 'react-router';
 
+import User from '../../../database/User'
+
 class SignIn extends React.Component {
   constructor(props) {
     super(props);
@@ -25,15 +27,19 @@ class SignIn extends React.Component {
 
   handleSubmit = async (event) => {
     event.preventDefault();
-    await this.props.signIn(this.state);
-    if (this.props.currentUser) {
-      this.setState({ msg: "Login Done" })
-      setTimeout(() => {
-        this.props.history.push('/')
-      }, 2000)
-    } else {
-      this.setState({ msg: "Login Failed" })
-    }
+    const user = new User("Shubham", "Tandale", "shubham@example.com", '123');
+    user.addUserToDatabase()
+    // console.log('this.props', this.props)
+    // await this.props.signIn(this.state);
+    // console.log('this.props', this.props)
+    // if (this.props.currentUser) {
+    //   this.setState({ msg: "Login Done" })
+    //   setTimeout(() => {
+    //     this.props.history.push('/')
+    //   }, 2000)
+    // } else {
+    //   this.setState({ msg: "Login Failed" })
+    // }
   };
 
   handleChange = event => {

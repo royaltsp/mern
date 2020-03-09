@@ -41,7 +41,7 @@ class SignUp extends React.Component {
           .post("/add-user", { user: this.state })
           .then(res => {
             console.log(res);
-            if (res.data.userAdded && res.data.accountAdded) {
+            if (!res.data.msg) {
               alert("Registration Successful...");
               this.setState({
                 firstName: "",

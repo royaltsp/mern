@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "nodemon server.js",
     "//": "nodemon will restart server on changes",
     "client": "npm run start --prefix client",
     "//": "start npm at different directory i.e.client",
@@ -37,5 +37,5 @@
   "devDependencies": {},
   "keywords": [],
   "description": "My MERN App",
-  "proxy": "http://localhost:5000"
+  "proxy": "http://localhost:5000/"
 }

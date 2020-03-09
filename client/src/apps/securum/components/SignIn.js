@@ -29,9 +29,9 @@ class SignIn extends React.Component {
           }
         })
         .then(res => {
-          if (!res.data.error) {
+          console.log('res', res)
+          if (!res.data.msg) {
             saveUser(res.data.user);
-            // saveUser("Shubham")
             alert("Login Success");
             localStorage.setItem("mern", res.data.token);
             this.props.history.push("/profile");
