@@ -14,8 +14,9 @@ import Bootstrap from "./apps/bootstrap/Bootstrap";
 
 
 import { loadFromLocalStorage, saveToLocalStorage } from './redux-persist'
-const apps = ['ecomm', 'securum', 'table-resize', 'bootstrap'];
-const appNumber = 4;
+import Training from './apps/training/Training';
+const apps = ['training', 'ecomm', 'securum', 'table-resize', 'bootstrap'];
+const appNumber = 1;
 
 // const allReducers = require(`./apps/${apps[appNumber - 1]}/reducers/allReducers`).allReducers;
 
@@ -32,6 +33,7 @@ myStore.subscribe(() => saveToLocalStorage(myStore.getState()))
 
 function App() {
     switch (apps[appNumber - 1]) {
+        case 'training': return <Training />
         case 'ecomm': return <Ecomm />
         case 'securum': return <Securum />
         case 'table-resize': return <TableResize />

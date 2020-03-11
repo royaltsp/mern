@@ -1,4 +1,0 @@
-nodemon npm package to restart automatically server when changes are made
-arr2 = [1,2,3]
-arr = [...arr2, 4, 5] // ... => spread operator seperates and puts element of array
-arr =  [1,2,3,4,5]
