@@ -3,7 +3,7 @@ import Th from "./Th";
 import './css/Thead.scss'
 import { connect } from "react-redux";
 
-import { addTestCase, removeTestCase } from '../reducers/testCaseActions'
+import { addTestCase, removeTestCase } from '../../../actions/testCaseActions'
 
 function Thead(props) {
   const { testCasesCount, columnHeaders } = props;

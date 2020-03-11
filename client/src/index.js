@@ -10,13 +10,16 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import Ecomm from "./apps/ecomm/Ecomm";
 import Securum from "./apps/securum/Securum";
 import TableResize from "./apps/table-resize/TableResize";
+import Bootstrap from "./apps/bootstrap/Bootstrap";
 
 
 import { loadFromLocalStorage, saveToLocalStorage } from './redux-persist'
-const apps = ['ecomm', 'securum', 'table-resize'];
-const appNumber = 2;
+const apps = ['ecomm', 'securum', 'table-resize', 'bootstrap'];
+const appNumber = 4;
 
-const allReducers = require(`./apps/${apps[appNumber - 1]}/reducers/allReducers`).allReducers;
+// const allReducers = require(`./apps/${apps[appNumber - 1]}/reducers/allReducers`).allReducers;
+
+const allReducers = require('./reducers/allReducers').allReducers;
 
 const persistedState = loadFromLocalStorage()
 
@@ -32,6 +35,7 @@ function App() {
         case 'ecomm': return <Ecomm />
         case 'securum': return <Securum />
         case 'table-resize': return <TableResize />
+        case 'bootstrap': return <Bootstrap />
         default: return <Ecomm />
     }
 }

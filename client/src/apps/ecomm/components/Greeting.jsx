@@ -1,5 +1,5 @@
 import React from 'react'
-import { changeName, handleName, changeNameAutomatically } from '../actions/userActions'
+import { changeName, handleName, changeNameAutomatically } from '../../../actions/userActions'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 

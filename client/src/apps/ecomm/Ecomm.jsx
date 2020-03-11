@@ -10,7 +10,7 @@ import './Ecomm.scss'
 
 function Ecomm() {
   return (
-    <div className="Ecomm">
+    <div className="ecomm">
       <Header />
       <Switch>
         <Route exact path="/" component={HomePage} />

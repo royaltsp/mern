@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
-import { changeEmail } from '../actions/userActions'
+import { changeEmail } from '../../../actions/userActions'
 // import { Link } from 'react-router-dom'
 
 function Hero(props) {

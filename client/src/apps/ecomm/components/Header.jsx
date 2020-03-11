@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { ReactComponent as Logo } from '../assets/crown.svg';
 import './css/Header.scss';
 import { signOut } from '../functions/sign-out';
-import { removeUser } from '../actions/userActions';
+import { removeUser } from '../../../actions/userActions';
 
 const Header = (props) => {
   return (

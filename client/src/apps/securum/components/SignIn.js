@@ -1,7 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { saveUser, changeEmail } from "../actions/userActions";
+import { saveUser, changeEmail } from "../../../actions/userActions";
 const axios = require("axios");
 
 class SignIn extends React.Component {

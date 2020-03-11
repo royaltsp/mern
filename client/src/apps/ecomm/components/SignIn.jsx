@@ -6,7 +6,7 @@ import CustomButton from './CustomButton';
 import './css/SignIn.scss';
 import { connect } from 'react-redux';
 
-import { signIn } from '../actions/userActions'
+import { signIn } from '../../../actions/userActions'
 import { withRouter } from 'react-router';
 
 import User from '../../../database/User'
@@ -52,7 +52,6 @@ class SignIn extends React.Component {
       <div className='sign-in'>
         <h2>I already have an account</h2>
         <span>Sign in with your email and password</span>
-
         <form onSubmit={this.handleSubmit}>
           <FormInput
             name='email'

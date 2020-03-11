@@ -3,7 +3,7 @@ import React from "react";
 import Td from "./Td";
 import ProgressBar from "./ProgressBar";
 import { connect } from "react-redux";
-import { addTestCase, removeTestCase } from "../reducers/testCaseActions";
+import { addTestCase, removeTestCase } from "../../../actions/testCaseActions";
 
 import './css/Tbody.scss'
 
