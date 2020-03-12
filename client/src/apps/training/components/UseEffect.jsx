@@ -19,7 +19,7 @@ function UseEffect() {
   return (
     <div>
       <div className="container">
-        <div className="row text-center mx-auto py-3 font-weight-bold">
+        <div className="row text-center mx-auto py-3 font-weight-bold text-uppercase">
           <div className="col-4"></div>
           <div className="col-4">Simple Post Fetching App</div>
           <div className="col-4"></div>
