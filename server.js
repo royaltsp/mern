@@ -4,6 +4,7 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || process.argv[2] || 5000;
 const bodyParser = require("body-parser");
+const path = require('path');
 const cors = require("cors");
 
 app.use(cors());
@@ -18,10 +19,9 @@ app.use(bodyParser.json());
 
 // serving static files if in production mode
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-  const path = require('path');
-  app.get("/", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  app.use(express.static(path.join(__dirname, "client/build")));
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
   });
 }
 
@@ -30,7 +30,8 @@ require("./routes/blockchain-routes")(app);
 require("./routes/user-routes")(app);
 require("./routes/account-routes")(app);
 
-app.listen(port, () => {
+app.listen(port, error => {
+  if(error) throw error;
   console.log(`Listening on ${port}`);
   // mongoose.connect(
   //   mongourl,

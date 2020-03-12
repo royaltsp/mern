@@ -16,7 +16,7 @@ import Bootstrap from "./apps/bootstrap/Bootstrap";
 import { loadFromLocalStorage, saveToLocalStorage } from './redux-persist'
 import Training from './apps/training/Training';
 const apps = ['training', 'ecomm', 'securum', 'table-resize', 'bootstrap'];
-const appNumber = 1;
+const appNumber = 5;
 
 // const allReducers = require(`./apps/${apps[appNumber - 1]}/reducers/allReducers`).allReducers;
 
