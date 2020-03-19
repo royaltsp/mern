@@ -25,3 +25,15 @@ const UserSchema = mongoose.Schema({
 })
 
 mongoose.model('User', UserSchema)
+
+/*
+{
+  "firstName" : "Shubham",
+  "lastName" : "Tandale",
+  "email" : "tsp@example.com",
+  "phone" : "7876786567",
+  "bio" : "Programmer",
+  "password" : "123",
+  "wayToContact": "email"
+}
+*/

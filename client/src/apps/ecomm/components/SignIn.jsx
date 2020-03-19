@@ -6,7 +6,7 @@ import CustomButton from './CustomButton';
 import './css/SignIn.scss';
 import { connect } from 'react-redux';
 
-import { signIn } from '../../../actions/userActions'
+import { signIn } from '../redux/actions/userActions'
 import { withRouter } from 'react-router';
 
 import User from '../../../database/User'

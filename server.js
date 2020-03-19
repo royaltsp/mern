@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
-const { mongourl } = require("./config/keys");
+const { mongoURI } = require("./config/keys");
 const express = require("express");
 const app = express();
 const port = process.env.PORT || process.argv[2] || 5000;
-const bodyParser = require("body-parser");
-const path = require('path');
+// const bodyParser = require("body-parser");
+const path = require("path");
 const cors = require("cors");
 
 app.use(cors());
@@ -13,9 +13,9 @@ app.use(cors());
 // // console.log(new DeviceUUID().get());
 
 //parse app / x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(bodyParser.urlencoded({ extended: false }));
 //parse app/json
-app.use(bodyParser.json());
+app.use(express.json());
 
 // serving static files if in production mode
 if (process.env.NODE_ENV === "production") {
@@ -26,18 +26,22 @@ if (process.env.NODE_ENV === "production") {
 }
 
 //import routes
-require("./routes/blockchain-routes")(app);
-require("./routes/user-routes")(app);
-require("./routes/account-routes")(app);
+// require("./routes/blockchain-routes")(app);
+// require("./routes/user-routes")(app);
+// require("./routes/account-routes")(app);
+const users = require("./routes/api/users");
+app.use("/api/users", users);
 
 app.listen(port, error => {
-  if(error) throw error;
+  if (error) throw error;
   console.log(`Listening on ${port}`);
-  // mongoose.connect(
-  //   mongourl,
-  //   { useNewUrlParser: true, useUnifiedTopology: true },
-  //   () => {
-  //     console.log("MongoDB Connection Success");
-  //   }
-  // );
-});
+  mongoose.connect(
+    mongoURI,
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true
+    })
+    .then(() => console.log("MongoDB Connection Success"))
+    .catch(err=> console.error(`MongoDB Error: ${err}`))
+});  
