@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router } from 'react-router-dom';
 // import { Provider } from 'react-redux';
@@ -12,6 +11,7 @@ import Securum from "./apps/securum/Securum";
 import TableResize from "./apps/table-resize/TableResize";
 import Bootstrap from "./apps/bootstrap/Bootstrap";
 import Training from './apps/training/Training';
+<<<<<<< HEAD
 import Table from './apps/table/Table'
 
 
@@ -36,6 +36,18 @@ const appNumber = 2;
 // // const myStore = createStore(allReducers, persistedState, composeEnhancers(applyMiddleware(thunk)));
 // const myStore = createStore(allReducers, composeEnhancers(applyMiddleware(thunk)));
 // myStore.subscribe(() => saveToLocalStorage(myStore.getState()))
+=======
+
+
+import { loadFromLocalStorage, saveToLocalStorage } from './redux-persist'
+
+const apps = ['training', 'ecomm', 'securum', 'table-resize', 'bootstrap'];
+const appNumber = 5;
+
+const persistedState = loadFromLocalStorage()
+
+myStore.subscribe(() => saveToLocalStorage(myStore.getState()))
+>>>>>>> 4ca0edb59bf996f87ec69a02b28e27c94781fe53
 
 function App() {
     switch (apps[appNumber]) {
