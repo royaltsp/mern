@@ -35,13 +35,12 @@ app.use("/api/users", users);
 app.listen(port, error => {
   if (error) throw error;
   console.log(`Listening on ${port}`);
-  mongoose.connect(
-    mongoURI,
-    {
+  mongoose
+    .connect(mongoURI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true
     })
     .then(() => console.log("MongoDB Connection Success"))
-    .catch(err=> console.error(`MongoDB Error: ${err}`))
-});  
+    .catch(err => console.error(`MongoDB Error: ${err}`));
+});

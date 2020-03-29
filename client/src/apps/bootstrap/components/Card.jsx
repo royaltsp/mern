@@ -2,7 +2,7 @@ import React from "react";
 
 function Card() {
   return (
-    <div className="card text-center" style={{ width: "20%" }}>
+    <div className="card text-center">
       <div className="card-img-top">
         <img src="/img/member/1.jpg" alt="hi" />
       </div>

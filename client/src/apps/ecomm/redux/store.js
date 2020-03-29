@@ -1,25 +1,27 @@
 import { createStore, compose, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
+import rootReducer from "./reducers";
 
-import thunk from 'redux-thunk'
+const intialState = {};
 
-import rootReducer from './reducers'
+const middleWare = [thunk];
 
-const INITIAL_STATE = {}
+// import { loadFromLocalStorage, saveToLocalStorage } from "./redux-persist";
+// const persistedState = loadFromLocalStorage()
+// myStore.subscribe(() => saveToLocalStorage(myStore.getState()))
 
-const middleWare = [thunk]
-
-declare global {
-  interface Window {
-    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
-  }
-}
+// declare global {
+//   interface Window {
+//     __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
+//   }
+// }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const ecommStore = createStore(
   rootReducer,
-  INITIAL_STATE,
+  intialState,
   composeEnhancers(applyMiddleware(...middleWare))
-)
+);
 
 export default ecommStore;

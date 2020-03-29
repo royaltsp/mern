@@ -1,0 +1,20 @@
+.btn {
+  background-color: black;
+  color: white;
+}
+
+.startBtnAnm {
+  animation: btnAnm 1s infinite;
+}
+
+@keyframes btnAnm {
+  0% {
+    color: white;
+  }
+  50% {
+    color: black;
+  }
+  100% {
+    color: white;
+  }
+}
