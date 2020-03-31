@@ -17,13 +17,17 @@ app.use(cors());
 //parse app/json
 app.use(express.json());
 
+app.set("view engine", "ejs");
+app.set("views", "views");
+
 // serving static files if in production mode
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "client/build")));
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-  });
-}
+// if (process.env.NODE_ENV === "production") {
+// app.use(express.static(path.join(__dirname, "client/build")));
+app.get("*", (req, res) => {
+  // res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+  res.render("index");
+});
+// }
 
 //import routes
 // require("./routes/blockchain-routes")(app);
@@ -31,6 +35,11 @@ if (process.env.NODE_ENV === "production") {
 // require("./routes/account-routes")(app);
 const users = require("./routes/api/users");
 app.use("/api/users", users);
+
+app.get("/hello", (req, res, next) => {
+  res.send("Hello");
+  res.end();
+});
 
 app.listen(port, error => {
   if (error) throw error;
