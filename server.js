@@ -21,13 +21,13 @@ app.set("view engine", "ejs");
 app.set("views", "views");
 
 // serving static files if in production mode
-// if (process.env.NODE_ENV === "production") {
-// app.use(express.static(path.join(__dirname, "client/build")));
-app.get("*", (req, res) => {
-  // res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-  res.render("index");
-});
-// }
+if (process.env.NODE_ENV === "production") {
+  // app.use(express.static(path.join(__dirname, "client/build")));
+  app.get("*", (req, res) => {
+    // res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+    res.render("index");
+  });
+}
 
 //import routes
 // require("./routes/blockchain-routes")(app);
