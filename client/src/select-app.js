@@ -25,7 +25,7 @@ const apps = {
   10: "react-redux",
 };
 
-const appNumber = 10;
+const appNumber = 3;
 const app = apps[appNumber];
 
 export default function App() {

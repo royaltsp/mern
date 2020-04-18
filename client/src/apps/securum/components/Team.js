@@ -1,14 +1,14 @@
-import React from 'react'
+import React from "react";
 // import { Link } from 'react-router-dom'
-import TeamMember from './TeamMember'
+import TeamMember from "./TeamMember";
 
 const members = [
   { number: 1, name: "Tandale Shubham", position: "Full Stack Developer" },
-  { number: 2, name: "Tandale Shubham", position: "Full Stack Developer" },
-  { number: 3, name: "Tandale Shubham", position: "Full Stack Developer" },
-  { number: 4, name: "Tandale Shubham", position: "Full Stack Developer" },
-  { number: 5, name: "Tandale Shubham", position: "Full Stack Developer" }
-]
+  { number: 2, name: "Saudagar Thorat", position: "Backend Developer" },
+  { number: 3, name: "Akshay Masal", position: "Project Manager" },
+  { number: 4, name: "Saurabh Adhatrao", position: "Front End Developer" },
+  { number: 5, name: "Suraj Koli", position: "Software Tester" },
+];
 
 export default function Team() {
   return (
@@ -18,9 +18,9 @@ export default function Team() {
           <div className="section-title text-center">
             <h2>Meet Our Team</h2>
             <p>
-              Our experts in the field of crypto currency can always help you with
-              any of your questions!
-        </p>
+              Our experts in the field of crypto currency can always help you
+              with any of your questions!
+            </p>
           </div>
         </div>
         <div className="team-members clearfix row">
@@ -35,8 +35,7 @@ export default function Team() {
           </div>
         </div>
         <div className="team-members clearfix row">
-          <div className="col-lg-2">
-          </div>
+          <div className="col-lg-2"></div>
           <div className="col-lg-4">
             <TeamMember member={members[3]} />
           </div>
@@ -46,5 +45,5 @@ export default function Team() {
         </div>
       </section>
     </div>
-  )
+  );
 }
