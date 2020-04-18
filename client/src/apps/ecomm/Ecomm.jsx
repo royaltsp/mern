@@ -8,25 +8,34 @@ import { Switch, Route } from "react-router";
 
 import "./Ecomm.scss";
 
-import { Provider } from "react-redux";
+import { Provider, connect } from "react-redux";
 import ecommStore from "./redux/store";
 
-function Ecomm() {
+function Ecomm(props) {
   return (
-    <Provider store={ecommStore}>
-      <div className="ecomm">
-        <Header />
-        <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route
-            path="/sign-in-and-sign-up-page"
-            component={SignInAndSignUpPage}
-          />
-          <Route path="/shop-page" component={ShopPage} />
-        </Switch>
-      </div>
-    </Provider>
+    <div className="ecomm">
+      <Header />
+      <Switch>
+        <Route exact path="/" component={HomePage} />
+        <Route
+          path="/sign-in-and-sign-up-page"
+          component={SignInAndSignUpPage}
+        />
+        <Route path="/shop-page" component={ShopPage} />
+      </Switch>
+    </div>
   );
 }
 
-export default Ecomm;
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+  };
+};
+
+connect(mapStateToProps)(Ecomm);
+export default () => (
+  <Provider store={ecommStore}>
+    <Ecomm />
+  </Provider>
+);

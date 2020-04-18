@@ -33,23 +33,31 @@ if (process.env.NODE_ENV === "production") {
 // require("./routes/blockchain-routes")(app);
 // require("./routes/user-routes")(app);
 // require("./routes/account-routes")(app);
+const fileRoutes = require("./routes/file");
 const users = require("./routes/api/users");
 app.use("/api/users", users);
+app.use("/file", fileRoutes);
 
-app.get("/hello", (req, res, next) => {
-  res.send("Hello");
-  res.end();
-});
+// app.get("/html", (req, res, next) => {
+//   console.log("object");
+//   app.use(express.static(path.join(__dirname, "public")));
+//   res.sendFile(path.join(__dirname, "public", "index.html"));
+// });
 
-app.listen(port, error => {
+// app.get("/const", (req, res) => {
+//   const { USER_LOADING, USER_LOADED } = require("./constants");
+//   res.send(USER_LOADING + USER_LOADED);
+// });
+
+app.listen(port, (error) => {
   if (error) throw error;
   console.log(`Listening on ${port}`);
   mongoose
     .connect(mongoURI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      useCreateIndex: true
+      useCreateIndex: true,
     })
     .then(() => console.log("MongoDB Connection Success"))
-    .catch(err => console.error(`MongoDB Error: ${err}`));
+    .catch((err) => console.error(`MongoDB Error: ${err}`));
 });

@@ -7,7 +7,9 @@ import {
   TableResize,
   Bootstrap,
   Table,
-  Material
+  Material,
+  MyCSS,
+  ReactRedux,
 } from "./apps";
 
 const apps = {
@@ -18,10 +20,12 @@ const apps = {
   5: "bootstrap",
   6: "table",
   7: "material",
-  8: "grid"
+  8: "grid",
+  9: "mycss",
+  10: "react-redux",
 };
 
-const appNumber = 5;
+const appNumber = 10;
 const app = apps[appNumber];
 
 export default function App() {
@@ -40,6 +44,10 @@ export default function App() {
       return <Bootstrap />;
     case "material":
       return <Material />;
+    case "mycss":
+      return <MyCSS />;
+    case "react-redux":
+      return <ReactRedux />;
     default:
       return <Ecomm />;
   }

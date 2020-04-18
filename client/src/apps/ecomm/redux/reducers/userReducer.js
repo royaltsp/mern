@@ -1,13 +1,13 @@
-const INITIAL_STATE = {
-  id: "",
-  firstName: "",
-  lastName: "",
-  email: "",
-  phone: "",
-  bio: "",
-  wayToContact: ""
-};
-
+// const INITIAL_STATE = {
+//   id: "",
+//   firstName: "",
+//   lastName: "",
+//   email: "",
+//   phone: "",
+//   bio: "",
+//   wayToContact: ""
+// };
+const INITIAL_STATE = [{ name: "Shubham" }];
 const userReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case "SAVE_USER":
@@ -20,12 +20,12 @@ const userReducer = (state = INITIAL_STATE, action) => {
         email: action.payload.email,
         phone: action.payload.phone,
         bio: action.payload.bio,
-        wayToContact: action.payload.wayToContact
+        wayToContact: action.payload.wayToContact,
       };
     case "CHANGE_EMAIL":
       return {
         ...state,
-        email: action.payload
+        email: action.payload,
       };
 
     default:
